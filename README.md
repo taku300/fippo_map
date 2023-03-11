@@ -80,3 +80,6 @@
 - メイン機能実装：3/13 - 3/31
 - β版をRUNTEQ内リリース（MVP）：4/1〆切
 - 本番リリース：4/6
+
+## figumaURL
+[釣りマップ](https://www.figma.com/file/6F5NkdE9tBxx6NPSmfbeSq/Untitled?node-id=0%3A1&t=T3HP0UbAwhZAp4bq-1)
