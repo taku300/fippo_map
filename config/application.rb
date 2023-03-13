@@ -11,6 +11,15 @@ module FippoMap
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.generators do |g|
+      g.assets false
+      g.skip_routes false
+      g.test_framework :rspec,    # RSpecを使用
+        controller_specs: false,  # controller specは作らない
+        view_specs: false,        # view specは作らない
+        helper_specs: false,      # helper specは作らない
+        routing_specs: false      # routing specは作らない
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
