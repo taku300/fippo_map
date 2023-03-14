@@ -83,3 +83,6 @@
 
 ## figumaURL
 [釣りマップ](https://www.figma.com/file/6F5NkdE9tBxx6NPSmfbeSq/Untitled?node-id=0%3A1&t=T3HP0UbAwhZAp4bq-1)
+
+## ER図
+[ER図](https://app.diagrams.net/#G1T9zkCCyWPuyNIkZp5JIIB4rF3riyKMkr)
