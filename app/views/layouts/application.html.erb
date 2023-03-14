@@ -10,10 +10,11 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="flex flex-col min-h-screen">
+    <%= render 'shared/header' %>
+    <main class="px-5 flex-grow bg-[#E9F0FE]">
       <%= yield %>
     </main>
+    <%= render 'shared/footer' %>
   </body>
 </html>
