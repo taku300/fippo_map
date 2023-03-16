@@ -5,7 +5,7 @@
   <div class="mx-auto mt-6 max-w-xl sm:mt-12">
     <%= simple_form_for :user, url: :login, method: :post, builder: SimpleForm::Tailwind::FormBuilder do |f| %>
       <%= f.input :email, label: t('.email') %>
-      <%= f.input :passwordm, label: t('.password') %>
+      <%= f.input :password, label: t('.password') %>
       <%= f.button :submit, t('.submit') %>
     <% end %>
   </div>
