@@ -1,12 +1,14 @@
 <div class="bg-[#E9F0FE]">
 <% if flash[:notice] %>
-  <div class="max-w-[800px] mx-auto p-4 mt-3 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg  dark:text-blue-800" role="alert">
+  <div class="relative max-w-[800px] mx-auto p-4 mt-3 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg  dark:text-blue-800 flex justify-between" role="alert">
     <%= flash[:notice] %>
+    <%= heroicon "x-circle", options: { class: "js-flash-close w-5" } %>
   </div>
 <% end %>
 <% if flash[:alert] %>
-  <div class="max-w-[800px] mx-auto p-4 mt-3 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:text-red-800" role="alert">
+  <div class="relative max-w-[800px] mx-auto p-4 mt-3 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:text-red-800 flex justify-between" role="alert">
     <%= flash[:alert] %>
+    <%= heroicon "x-circle", options: { class: "js-flash-close w-5" } %>
   </div>
 <% end %>
 </div>
