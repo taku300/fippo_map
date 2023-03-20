@@ -1,0 +1,21 @@
+ja:
+  simple_form:
+    "yes": 'はい'
+    "no": 'いいえ'
+    required:
+      text: 'required'
+      html: '<span title="required" class="text-red-600">*</span>'
+    error_notification:
+      default_message: "エラーがあります。確認してください。"
+    labels:
+    hints:
+      user:
+        is_published: '投稿した釣果を公開します。'
+        avatar: '10MB以下 jpg jpeg gif png'
+        password: '8以上で入力してください'
+    placeholders:
+      user:
+        name: 'fippo map'
+        email: 'example@mail.co.jp'
+    include_blanks:
+    prompts:

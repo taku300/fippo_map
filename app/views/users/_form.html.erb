@@ -1,0 +1,29 @@
+<%= simple_form_for @user, builder: SimpleForm::Tailwind::FormBuilder do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :avatar, as: :file, onchange: 'previewImage()' %>
+  <%= f.hidden_field :avatar_cache %>
+  <%= image_tag user.avatar.url, class: 'mb-10 rounded-lg', id: 'preview', size: '100x100' %>
+  <%= f.input :introduction, as: :text, input_html: {rows: 5} %>
+  <%= f.input :is_published, as: :boolean %>
+  <%= f.button :submit %>
+<% end %>
+
+<script>
+  function previewImage() {
+  const target = this.event.target;
+  const file = target.files[0];
+  const reader  = new FileReader();
+  reader.onloadend = function () {
+      const preview = document.querySelector("#preview")
+      if(preview) {
+          preview.src = reader.result;
+      }
+  }
+  if (file) {
+      reader.readAsDataURL(file);
+  }
+  }
+</script>

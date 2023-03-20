@@ -6,15 +6,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
   <body class="flex flex-col min-h-screen">
     <%= render 'shared/header' %>
+    <%= render 'shared/flash' %>
     <main class="px-5 flex-grow bg-[#E9F0FE]">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
   </body>
 </html>
+
+<%# simple_form等の設定を変えたときにTailwindが反映されないのでここにキープする %>
+<%# <keep class="block w-full rounded-md border-0 py-2 px-3.5 mt-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 text-red-600 text-red-500 bg-indigo-600 text-xs py-2.5 text-center text-sm font-semibold text-white  hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-10 mb-5 mb-10 mt-1"></keep> %>

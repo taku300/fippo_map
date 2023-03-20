@@ -1,0 +1,43 @@
+ja:
+  defaults:
+    fippo_map: 'fippo map'
+    login: 'ログイン'
+    register: '登録'
+    logout: 'ログアウト'
+    my_page: 'マイページ'
+    post: '投稿'
+    search_word: '検索ワード'
+    edit: '編集'
+    show: '詳細'
+    delete: '削除'
+    password_reset: 'パスワードリセット'
+    unspecified: '指定なし'
+    terms_of_service: '利用規約'
+    privacy_policy: 'プライバシーポリシー'
+    copywriting: '© 2023 Fippo map'
+    message:
+      require_login: 'ログインしてください'
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました。"
+      delete_confirm: '削除しますか？'
+      not_authorized: '権限がありません'
+
+  users:
+    new:
+      title: 'ユーザー登録'
+  user_sessions:
+    new:
+      title: 'ログイン'
+      submit: 'ログインする'
+      email: 'メールアドレス'
+      password: 'パスワード'
+      sign_up: '新規登録'
+      forgotten_password: 'パスワードを忘れた方'
+    create:
+      login: 'ログインしました'
+      not_login: 'ログインできませんでした'
+    destroy:
+      logout: 'ログアウトしました'

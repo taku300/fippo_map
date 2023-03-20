@@ -4,11 +4,17 @@ import "controllers"
 import jquery from "jquery"
 window.$ = jquery
 
-$(function(){
+$(document).on("turbo:load", function() {
+  //flashメッセージを閉じる
+  var $jsFlashClose = $('.js-flash-close')
+  $jsFlashClose.on('click', function() {
+    console.log($(this).parent().parent())
+    $(this).parent().parent().slideToggle(200)
+  })
+
   // profileの表示・非表示
   var $userMenuButton = $("#js-user-menu-button");
   $userMenuButton.on('click', function() {
-    console.log(111);
     $(this).next().slideToggle(200)
   })
 })
