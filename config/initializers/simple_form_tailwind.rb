@@ -34,7 +34,6 @@ SimpleForm.setup do |config|
   config.input_field_valid_class = 'border-green-400'
   config.label_class = 'text-sm font-medium text-gray-600'
 
-
   # vertical forms
   #
   # vertical default_wrapper
@@ -67,7 +66,6 @@ SimpleForm.setup do |config|
       bb.use :hint, wrap_with: { tag: 'p', class: 'block text-gray-700 text-xs italic' }
       bb.use :full_error, wrap_with: { tag: 'p', class: 'block text-red-500 text-xs italic' }
     end
-
   end
 
   # vertical input for radio buttons and check boxes
@@ -90,7 +88,7 @@ SimpleForm.setup do |config|
     b.optional :minlength
     b.optional :readonly
     b.use :label, class: 'block text-sm font-semibold leading-6 text-gray-900', error_class: 'block text-sm font-semibold leading-6 text-gray-900'
-    b.use :input, class: 'focus:ring-indigo-600 mt-2.5', error_class: 'focus:ring-indigo-600 mt-2.5', valid_class: 'text-green-400',accept: 'image/*', onchange: 'previewImage()'
+    b.use :input, class: 'focus:ring-indigo-600 mt-2.5', error_class: 'focus:ring-indigo-600 mt-2.5', valid_class: 'text-green-400', accept: 'image/*', onchange: 'previewImage()'
     b.use :full_error, wrap_with: { tag: 'p', class: 'block text-gray-700 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'block text-gray-700 text-xs italic mt-1' }
   end

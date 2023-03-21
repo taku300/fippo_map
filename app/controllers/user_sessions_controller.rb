@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login
 
-  #簡易ログインん機能、開発環境のみ有効
+  # 簡易ログインん機能、開発環境のみ有効
   def login_as
     user = User.find(params[:user_id])
     auto_login(user)
