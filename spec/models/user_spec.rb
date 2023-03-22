@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   let(:user) { build(:user) }
   let(:another_user) { build(:user, email: user.email) }
   let(:secret_user) { build(:user, :secret) }
