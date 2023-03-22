@@ -61,6 +61,9 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'carrierwave', '~> 2.0'
 gem 'config'
+gem 'gmaps4rails'
+gem 'geocoder'
+gem 'dotenv-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

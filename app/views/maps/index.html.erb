@@ -1,0 +1,46 @@
+<script>
+  var lat = pos.coords.latitude;
+  var lng = pos.coords.longitude;
+  var latlng
+  var map
+
+  function initMap() {
+    function success(pos) {
+      lat = pos.coords.latitude;
+      lng = pos.coords.longitude;
+      latlng = new google.maps.LatLng(lat, lng); //中心の緯度, 経度
+      map = new google.maps.Map(document.getElementById('maps'), {
+        zoom: 10,
+        center: latlng,
+        mapTypeId: 'terrain',
+      });
+      var marker = new google.maps.Marker({
+        position: latlng, //マーカーの位置（必須）
+        map: map //マーカーを表示する地図
+      });
+    }
+    function fail(error) {
+      alert('位置情報の取得に失敗しました。エラーコード：' + error.code);
+      latlng = new google.maps.LatLng(35.6812405, 139.7649361); //東京駅
+      map = new google.maps.Map(document.getElementById('maps'), {
+        zoom: 10,
+        center: latlng,
+        mapTypeId: 'terrain',
+      });
+    }
+    navigator.geolocation.getCurrentPosition(success, fail);
+  }
+  // 中心位置を変更する
+  function changeCenter() {
+    map.panTo(new google.maps.LatLng(lat, lng));
+  }
+</script>
+
+<%# 表示部分 %>
+<div id="maps" class="w-full h-[calc(100vh_-_64px_-_64px)] relative" >
+</div>
+<button class="bg-white w-10 h-10 absolute top-32 m-[10px] rounded-sm right-0" onClick="changeCenter()">
+  <div class="w-7 h-7 m-auto">
+    <%= heroicon "map-pin" %>
+  </div>
+</button>
