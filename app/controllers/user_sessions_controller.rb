@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
   def login_as
     user = User.find(params[:user_id])
     auto_login(user)
-    redirect_to maps_path, notice: "#{Rails.env}環境でログインしました"
+    redirect_to fishes_path, notice: "#{Rails.env}環境でログインしました"
   end
 
   def new; end
@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:user][:email], params[:user][:password])
     if @user
-      redirect_back_or_to maps_path, notice: t('.login')
+      redirect_back_or_to fishes_path, notice: t('.login')
     else
       flash.now[:alert] = t('.not_login')
       render :new, status: :unprocessable_entity

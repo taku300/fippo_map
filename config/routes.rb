@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
   resources :users, only: %i[new create show edit update]
-  resources :maps
+  resources :fishes
   namespace :mypage do
     get 'dashboard'
     get 'follow'
