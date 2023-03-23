@@ -59,11 +59,11 @@ fishes = []
       latitude: Faker::Address.latitude.round(8),
       longitude: Faker::Address.longitude.round(8),
       species_id: rand(1..SPECIES_NUMBER),
-      wether: 1,
-      wind_direction: 1,
-      wind_speed: 1,
+      wether: Fish.wethers.values.sample,
+      wind_direction: Fish.wind_directions.values.sample,
+      wind_speed: rand(0.0..40.0).round(2),
       temperature: rand(0.0..40.0).round(2),
-      tide_name: 1,
+      tide_name: Fish.tide_names.values.sample,
     }
 end
 Fish.insert_all! fishes, returning: nil
