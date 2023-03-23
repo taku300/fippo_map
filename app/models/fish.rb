@@ -12,12 +12,12 @@ class Fish < ApplicationRecord
               before: ->(obj) { Time.zone.today }
             }
   validates :body, presence: true, length: { maximum: 255 }
-  validates :latitude, presence: true, numericality: true, format: { with: /\A([0-9]{0,3}|0)(.[0-9]{0,8})?\z/, message: 'は整数部分3桁小数部分8桁で入力してください' }
-  validates :longitude, presence: true, numericality: true, format: { with: /\A([0-9]{0,3}|0)(.[0-9]{0,8})?\z/, message: 'は整数部分3桁小数部分8桁で入力してください' }
-  validates :size, numericality: { only_integer: true }
+  validates :latitude, presence: true, numericality: { in: -90..90, message: 'は-90~90で入力してください' }
+  validates :longitude, presence: true, numericality: { in: -180..180, message: 'は-180~180で入力してください' }
+  validates :size, numericality: { only_integer: true }, allow_blank: true
   validates :wether, presence: true, numericality: { only_integer: true }
   validates :wind_direction, presence: true, numericality: { only_integer: true }
-  validates :wind_speed, presence: true, numericality: true, format: { with: /\A([0-9]{0,3}|0)(.[0-9]{0,2})?\z/, message: 'は整数部分3桁小数部分2桁で入力してください' }
-  validates :temperature, presence: true, numericality: true, format: { with: /\A([0-9]{0,3}|0)(.[0-9]{0,2})?\z/, message: 'は整数部分3桁小数部分2桁で入力してください' }
+  validates :wind_speed, presence: true, numericality: true
+  validates :temperature, presence: true, numericality: true
   validates :tide_name, presence: true, numericality: { only_integer: true }
 end
