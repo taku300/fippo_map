@@ -11,7 +11,7 @@ RSpec.describe 'UserSessions', type: :system do
         fill_in 'パスワード', with: 'password'
         click_button 'ログインする'
         expect(page).to have_content 'ログインしました'
-        expect(current_path).to eq root_path
+        expect(current_path).to eq fishes_path
       end
     end
 
