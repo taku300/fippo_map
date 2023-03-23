@@ -35,13 +35,35 @@ p '==================== published user create ================'
     is_published: true,
   )
 end
-# POST_NUMBER = 10
-# posts = []
-# POST_NUMBER.times do |n|
-#   time = Time.current
-#   posts <<
-#     {
-#       name: Faker::Name.unique.name,
-#     }
-# end
-# Post.insert_all! users, returning: nil
+
+p '==================== species  create ======================'
+SPECIES_NUMBER = 20
+species = []
+SPECIES_NUMBER.times do |n|
+  time = Time.current
+  species <<
+    {
+      name: Faker::Creature::Animal.unique.name,
+    }
+end
+Species.insert_all! species, returning: nil
+
+p '==================== fishes  create ========================'
+fishes = []
+20.times do |n|
+  time = Time.current
+  fishes <<
+    {
+      fishing_date: Faker::Date.between(from: '2000-01-01', to: '2023-03-01'),
+      body: Faker::Name.unique.name,
+      latitude: Faker::Address.latitude.round(8),
+      longitude: Faker::Address.longitude.round(8),
+      species_id: rand(1..SPECIES_NUMBER),
+      wether: 1,
+      wind_direction: 1,
+      wind_speed: 1,
+      temperature: rand(0.0..40.0).round(2),
+      tide_name: 1,
+    }
+end
+Fish.insert_all! fishes, returning: nil

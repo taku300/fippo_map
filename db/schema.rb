@@ -10,9 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_150728) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_090331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "fish", force: :cascade do |t|
+    t.string "image"
+    t.datetime "fishing_date", null: false
+    t.string "body", null: false
+    t.decimal "latitude", precision: 11, scale: 8, null: false
+    t.decimal "longitude", precision: 11, scale: 8, null: false
+    t.bigint "species_id", null: false
+    t.integer "size"
+    t.integer "wether", limit: 2, null: false
+    t.integer "wind_direction", limit: 2, null: false
+    t.decimal "wind_speed", precision: 5, scale: 2, null: false
+    t.decimal "temperature", precision: 5, scale: 2, null: false
+    t.integer "tide_name", limit: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["species_id"], name: "index_fish_on_species_id"
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_species_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
