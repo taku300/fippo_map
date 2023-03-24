@@ -3,7 +3,7 @@ marker[<%= fish.id %>] = new markerWithLabel.MarkerWithLabel({
   position: markerLatLng,
   map: map,
   icon: {
-    url: 'images/fish1.png',
+    url: "<%= fish.latest? ? 'images/fish_new1.png' : 'images/fish1.png' %>",
     scaledSize: new google.maps.Size(32, 40)
   },
   labelContent: '<%= fish.species.name %>',
