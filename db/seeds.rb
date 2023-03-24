@@ -36,7 +36,7 @@ p '==================== published user create ================'
   )
 end
 
-p '==================== species  create ======================'
+p '==================== species create ======================='
 SPECIES_NUMBER = 20
 species = []
 SPECIES_NUMBER.times do |n|
@@ -48,16 +48,34 @@ SPECIES_NUMBER.times do |n|
 end
 Species.insert_all! species, returning: nil
 
-p '==================== fishes  create ========================'
+p '==================== today fishes create ==================='
 fishes = []
-20.times do |n|
-  time = Time.current
+10.times do |n|
+  fishes <<
+    {
+      fishing_date: Time.current,
+      body: Faker::Lorem.paragraph,
+      latitude: rand(20.0..46.0).round(8),
+      longitude: rand(122.0..154.0).round(8),
+      species_id: rand(1..SPECIES_NUMBER),
+      wether: Fish.wethers.values.sample,
+      wind_direction: Fish.wind_directions.values.sample,
+      wind_speed: rand(0.0..40.0).round(2),
+      temperature: rand(0.0..40.0).round(2),
+      tide_name: Fish.tide_names.values.sample,
+    }
+end
+Fish.insert_all! fishes, returning: nil
+
+p '==================== fishes create ========================='
+fishes = []
+100.times do |n|
   fishes <<
     {
       fishing_date: Faker::Date.between(from: '2000-01-01', to: '2023-03-01'),
-      body: Faker::Name.unique.name,
-      latitude: Faker::Address.latitude.round(8),
-      longitude: Faker::Address.longitude.round(8),
+      body: Faker::Lorem.paragraph,
+      latitude: rand(20.0..46.0).round(8),
+      longitude: rand(122.0..154.0).round(8),
       species_id: rand(1..SPECIES_NUMBER),
       wether: Fish.wethers.values.sample,
       wind_direction: Fish.wind_directions.values.sample,

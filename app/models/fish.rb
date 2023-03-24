@@ -20,4 +20,8 @@ class Fish < ApplicationRecord
   validates :wind_speed, presence: true, numericality: true
   validates :temperature, presence: true, numericality: true
   validates :tide_name, presence: true, numericality: { only_integer: true }
+
+  def latest?
+    Date.parse(fishing_date.to_s) == Time.zone.today
+  end
 end

@@ -1,7 +1,9 @@
 class FishesController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
 
-  def index; end
+  def index
+    @fishes = Fish.includes(:species)
+  end
 
   def new; end
 
