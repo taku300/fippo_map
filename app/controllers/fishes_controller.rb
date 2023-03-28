@@ -7,11 +7,15 @@ class FishesController < ApplicationController
     @fishes = Fish.includes(:species)
   end
 
+  def show; end
+
   def new
     session[:latitude] = params[:latitude]
     session[:longitude] = params[:longitude]
     @fish = Fish.new
   end
+
+  def edit; end
 
   def create
     Fish.transaction do
@@ -32,17 +36,13 @@ class FishesController < ApplicationController
 
   def update; end
 
-  def edit; end
-
-  def show; end
-
   def complete; end
 
   # ajaxで現在の気象情報を取得するためのメソッド
   def ajax_current_weather
-    date = Time.current;
-    latitude = session[:latitude];
-    longitude = session[:longitude];
+    date = Time.current
+    latitude = session[:latitude]
+    longitude = session[:longitude]
     respond_to do |format|
       format.json { render json: imput_default(date, latitude, longitude) }
     end

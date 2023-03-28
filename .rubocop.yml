@@ -94,10 +94,6 @@ Rails/LexicallyScopedActionFilter:
 Rails/I18nLazyLookup:
   Enabled: false
 
-# アクションの順番
-Rails/ActionOrder:
-  Enabled: false
-
 # DBとバリデーションの整合性
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
@@ -142,4 +138,14 @@ Style/RedundantConstantBase:
   Enabled: false
 
 Style/BlockComments:
+  Enabled: false
+
+# 条件には変数を使う
+Style/ConditionalAssignment:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Naming/RescuedExceptionsVariableName:
   Enabled: false
