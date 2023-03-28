@@ -1,0 +1,44 @@
+<%= simple_form_for fish, builder: SimpleForm::Tailwind::FormBuilder, data: { turbo: false } do |f| %>
+  <%= f.input :image, as: :file, onchange: 'previewImage()' %>
+  <%= f.hidden_field :image_cache %>
+  <%= image_tag fish.image.url, class: 'mb-10 rounded-lg mx-auto', id: 'preview', size: '200x200' %>
+  <%= f.input :fishing_date, as: :string %>
+  <%= f.input :body, as: :text, input_html: {rows: 5} %>
+  <%= f.label :species, class: 'block text-sm font-semibold leading-6 text-gray-900', error_class: 'block text-sm font-semibold leading-6 text-gray-900'%>
+  <%= f.text_field :species, list: 'fish_species_id', class: 'block w-full rounded-md border-0 py-2 px-3.5 mt-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mb-10', value: fish.species_default do %>
+  <% end %>
+  <datalist id="fish_species_id">
+  <% Species.pluck(:name).each do |species| %>
+    <option value="<%= species %>"></option>
+  <% end %>
+  </datalist>
+  <p class="js-add-info mb-10" ><%= t('.more_info') %> <span class="inline-block origin-center duration-200">▶︎</span></p>
+  <div class="hidden">
+    <%= f.input :size %>
+    <%= f.input :latitude, as: :string %>
+    <%= f.input :longitude, as: :string %>
+    <%= f.input :weather, as: :select, collection: Fish.weathers_i18n.invert %>
+    <%= f.input :wind_direction, as: :select, collection: Fish.wind_directions_i18n.invert %>
+    <%= f.input :wind_speed, as: :string %>
+    <%= f.input :temperature, as: :string %>
+    <%= f.input :tide_name, as: :select, collection: Fish.tide_names_i18n.invert %>
+  </div>
+  <%= f.button :submit %>
+<% end %>
+
+<script>
+  function previewImage() {
+  const target = this.event.target;
+  const file = target.files[0];
+  const reader  = new FileReader();
+  reader.onloadend = function () {
+      const preview = document.querySelector("#preview")
+      if(preview) {
+          preview.src = reader.result;
+      }
+  }
+  if (file) {
+      reader.readAsDataURL(file);
+  }
+  }
+</script>
