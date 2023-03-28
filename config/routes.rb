@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
   resources :users, only: %i[new create show edit update]
-  resources :fishes
+  resources :fishes do
+    get :complete, on: :collection
+    get :ajax_current_weather, on: :collection
+  end
   namespace :mypage do
     get 'dashboard'
     get 'follow'

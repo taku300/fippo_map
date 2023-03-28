@@ -14,7 +14,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_090331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "fish", force: :cascade do |t|
+  create_table "fishes", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "image"
     t.datetime "fishing_date", null: false
     t.string "body", null: false
@@ -22,14 +23,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_090331) do
     t.decimal "longitude", precision: 11, scale: 8, null: false
     t.bigint "species_id", null: false
     t.integer "size"
-    t.integer "wether", limit: 2, null: false
+    t.integer "weather", limit: 2, null: false
     t.integer "wind_direction", limit: 2, null: false
     t.decimal "wind_speed", precision: 5, scale: 2, null: false
     t.decimal "temperature", precision: 5, scale: 2, null: false
     t.integer "tide_name", limit: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["species_id"], name: "index_fish_on_species_id"
+    t.index ["species_id"], name: "index_fishes_on_species_id"
+    t.index ["user_id"], name: "index_fishes_on_user_id"
   end
 
   create_table "species", force: :cascade do |t|

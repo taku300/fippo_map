@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+USER_NUMBER = 10
 p '==================== admin user create ===================='
 User.create!(
   name: 'taku300',
@@ -25,7 +26,7 @@ User.create!(
   is_published: false,
 )
 p '==================== published user create ================'
-10.times do |n|
+USER_NUMBER.times do |n|
   User.create!(
     name: Faker::Name.unique.name,
     email: Faker::Internet.unique.email,
@@ -53,12 +54,13 @@ fishes = []
 10.times do |n|
   fishes <<
     {
+      user_id: rand(1..USER_NUMBER),
       fishing_date: Time.current,
       body: Faker::Lorem.paragraph,
       latitude: rand(20.0..46.0).round(8),
       longitude: rand(122.0..154.0).round(8),
       species_id: rand(1..SPECIES_NUMBER),
-      wether: Fish.wethers.values.sample,
+      weather: Fish.weathers.values.sample,
       wind_direction: Fish.wind_directions.values.sample,
       wind_speed: rand(0.0..40.0).round(2),
       temperature: rand(0.0..40.0).round(2),
@@ -72,12 +74,13 @@ fishes = []
 100.times do |n|
   fishes <<
     {
+      user_id: rand(1..USER_NUMBER),
       fishing_date: Faker::Date.between(from: '2000-01-01', to: '2023-03-01'),
       body: Faker::Lorem.paragraph,
       latitude: rand(20.0..46.0).round(8),
       longitude: rand(122.0..154.0).round(8),
       species_id: rand(1..SPECIES_NUMBER),
-      wether: Fish.wethers.values.sample,
+      weather: Fish.weathers.values.sample,
       wind_direction: Fish.wind_directions.values.sample,
       wind_speed: rand(0.0..40.0).round(2),
       temperature: rand(0.0..40.0).round(2),

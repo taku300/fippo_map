@@ -1,18 +1,15 @@
 ja:
   enums:
     fish:
-      wether:
+      weather:
         fine: '晴天'
         sunny: '晴れ'
-        partly_cloudy: '晴れときどき曇り'
         cloudy: '曇り'
         fog: '霧'
         drizzle: '霧雨'
-        rain_ice: '雨氷'
         rain: '雨'
         snow: '雪'
         thunderstorm: '雷雨'
-        hail: '雹'
       wind_direction:
         north: '北'
         north_northeast: '北北東'
