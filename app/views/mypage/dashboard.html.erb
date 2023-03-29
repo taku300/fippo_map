@@ -1,4 +1,58 @@
-<div>
-  <h1 class="font-bold text-4xl">Mypage#dashboard</h1>
-  <p>Find me in app/views/mypage/dashboard.html.erb</p>
+<div class="bg-form py-6 px-6 max-w-[800px] m-auto my-16 rounded-2xl relative">
+  <div class="mx-auto">
+    <div class="sm:flex">
+      <div class="flex-grow flex flex-col sm:border-r-[1px] sm:border-spacing-100">
+        <div class="flex mb-4">
+          <%= link_to mypage_dashboard_path, class: "flex max-w-xs items-center rounded-ful text-sm focus:outline-none" do %>
+          <%= image_tag current_user.avatar_url(:thumbnail), class: "rounded-full h-12 w-12 sm:h-16 sm:w-16", alt: User.human_attribute_name(:avatar) %>
+          <% end %>
+          <div class="flex-grow px-5 text-base sm:text-xl">
+            <%= current_user.name %>
+          </div>
+        </div>
+        <div class="flex-grow min-h-[50px]"><%= simple_format(current_user.introduction)%></div>
+        <div class="flex">
+          <%= link_to t('defaults.edit'), edit_user_path(current_user), class: "inline-flex items-center rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1", data: {turbo: false} %>
+          <%= turbo_frame_tag "published" do %>
+            <% if current_user.is_published %>
+              <%= link_to remove_published_users_path, class: "inline-flex items-center rounded-full bg-indigo-600 px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0", onclick: "return confirm('" + t('.not_published?') + "')" do %>
+                <div class="w-4 mr-1"><%= heroicon 'check-circle' %></div>
+                <%= t('.published') %>
+              <% end %>
+            <% else %>
+              <%= link_to add_published_users_path, class: "inline-flex items-center rounded-full bg-indigo-600 px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0", onclick: "return confirm('" + t('.published?') + "')" do %>
+                <div class="w-4 mr-1"><%= heroicon 'key' %></div>
+                <%= t('.not_published') %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <hr class="my-3">
+      <table class="table-auto text-sm text-slate-500 sm:mx-9">
+        <tbody>
+          <tr class="h-10">
+            <td class="w-24"><%= 'STATUS' %></td>
+            <td><%=  %></td>
+          </tr>
+          <tr class="h-8">
+            <td><%= t('.post_num') %></td>
+            <td><%= current_user.fishes.count  %></td>
+          </tr>
+          <tr class="h-8">
+            <td><%= t('.follow_num') %></td>
+            <td><%= current_user.fishes.count  %></td>
+          </tr>
+          <tr class="h-8">
+            <td><%= t('.follower_num') %></td>
+            <td><%= current_user.fishes.count  %></td>
+          </tr>
+          <tr class="h-8">
+            <td><%= t('.grade') %></td>
+            <td><%= current_user.fishes.count  %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
