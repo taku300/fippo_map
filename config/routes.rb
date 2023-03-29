@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create show edit update]
   resources :fishes do
     get :complete, on: :collection
+    get :complete_edit, on: :collection
     get :ajax_current_weather, on: :collection
   end
   namespace :mypage do
