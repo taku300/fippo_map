@@ -1,28 +1,35 @@
 class FishesController < ApplicationController
   include FishHelper
   skip_before_action :require_login, only: %i[index show]
-  before_action :set_fish, only: %i[edit update destroy]
+  before_action :set_fish, only: %i[show edit update destroy]
 
   def index
+    authorize(Fish)
+
     @fishes = Fish.includes(:species)
   end
 
   def show
-    @fish = Fish.find(params[:id])
-    session[:latitude] = @fish.latitude
-    session[:longitude] = @fish.longitude
+    authorize(@fish)
+
     @user = @fish.user
   end
 
   def new
+    authorize(Fish)
+
     session[:latitude] = params[:latitude]
     session[:longitude] = params[:longitude]
     @fish = Fish.new
   end
 
-  def edit; end
+  def edit
+    authorize(@fish)
+  end
 
   def create
+    authorize(@fish)
+
     Fish.transaction do
       if Species.exists?(name: species_params[:species])
         species = Species.find_by(name: species_params[:species])
@@ -40,6 +47,8 @@ class FishesController < ApplicationController
   end
 
   def update
+    authorize(@fish)
+
     Fish.transaction do
       if Species.exists?(name: species_params[:species])
         species = Species.find_by(name: species_params[:species])
@@ -57,6 +66,8 @@ class FishesController < ApplicationController
   end
 
   def destroy
+    authorize(@fish)
+
     @fish.destroy!
     redirect_to fishes_path, notice: t('defaults.message.deleted', item: Fish.model_name.human)
   end
@@ -84,7 +95,7 @@ class FishesController < ApplicationController
   end
 
   def set_fish
-    @fish = current_user.fishes.find(params[:id])
+    @fish = Fish.find(params[:id])
     session[:latitude] = @fish.latitude
     session[:longitude] = @fish.longitude
   end

@@ -30,6 +30,8 @@ ja:
   users:
     new:
       title: 'ユーザー登録'
+    edit:
+      title: 'ユーザー更新'
   user_sessions:
     new:
       title: 'ログイン'

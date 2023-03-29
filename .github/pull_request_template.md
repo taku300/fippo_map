@@ -11,4 +11,11 @@
 - [ ] Rspec
 - [ ] lint
 
+## 確認事項
+- [ ] バリデーション
+- [ ] flash
+- [ ] policy
+- [ ] defaultメッセージ
+- [ ] hint
+
 ## その他
