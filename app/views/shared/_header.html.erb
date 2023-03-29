@@ -4,7 +4,7 @@
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <%= link_to root_path do %>
+            <%= link_to root_path, data: {turbo: false} do %>
               <%= image_tag "logo_white.png", class: "h-10 w-32 ",alt: t('defaults.fippo_map') %>
             <% end %>
           </div>
