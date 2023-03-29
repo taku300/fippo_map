@@ -1,0 +1,7 @@
+<div class="mx-auto mt-6 max-w-xl sm:mt-12">
+  <div class="flex justify-center">
+    <%= link_to t('.to_twitter'), "https://twitter.com/share?ref_src=twsrc%5Etfw", class: 'twitter-share-button flex', data: { lang: "ja", 'show-count': false, size: "large", text: t('.text'), hashtags: t('.hashtags') } %>
+  </div>
+  <%= link_to t('.to_map'), fishes_path, class: 'block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-5', 'data-turbo': false %>
+</div>
+<script src="https://platform.twitter.com/widgets.js" charset="utf-8" defer></script>

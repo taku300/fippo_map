@@ -8,7 +8,6 @@ $(document).on("turbo:load", function() {
   //flashメッセージを閉じる
   var $jsFlashClose = $('.js-flash-close')
   $jsFlashClose.on('click', function() {
-    console.log($(this).parent().parent());
     $(this).parent().parent().slideToggle(200);
   })
 
@@ -52,11 +51,12 @@ $(document).on("turbo:load", function() {
   var $fishWindSpeed = $('#fish_wind_speed');
   var $fishTemperature = $('#fish_temperature');
   var $fishTideName = $('#fish_tide_name');
+  var $defaultFlag = $('#default_flag');
   if ($fishFishingDate.val() && $fishFishingDate.val().indexOf("+") >= 0) { // fishing_dateのタイムゾーンの表示を消去
+    console.log($fishFishingDate)
     $fishFishingDate.val($fishFishingDate.val().substring(0, $fishFishingDate.val().indexOf("+")));
   }
-  console.log($fishLatitude.val())
-  if ($fishLatitude.val() == "" && $fishLongitude.val() == "") {
+  if ($defaultFlag.text() == 'default' && $fishLatitude.val() == "" && $fishLongitude.val() == "") {
     $.ajax({
       type: "GET",
       url: "/fishes/ajax_current_weather",
@@ -84,7 +84,6 @@ $(document).on("turbo:render", function() {
   //flashメッセージを閉じる
   var $jsFlashClose = $('.js-flash-close')
   $jsFlashClose.on('click', function() {
-    console.log($(this).parent().parent())
     $(this).parent().parent().slideToggle(200)
   })
 

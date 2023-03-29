@@ -11,6 +11,7 @@ ja:
     edit: '編集'
     show: '詳細'
     delete: '削除'
+    back: '戻る'
     password_reset: 'パスワードリセット'
     unspecified: '指定なし'
     terms_of_service: '利用規約'
@@ -57,13 +58,21 @@ ja:
     new:
       title: '釣果を投稿'
       more_info: 'もっと詳しく '
+    show:
+      follow: 'フォローする'
+      species: '魚種'
+      size: 'サイズ'
+      weather: '天気'
+      tide_name: '潮名'
     edit:
-      title: '釣果を編集'
+      title: '釣果を更新'
     complete:
       title: '投稿完了しました！！'
       to_map: 'マップに戻る'
       to_twitter: 'Twitterに投稿'
       text: 'フィッポマップで釣果を投稿しました！！'
       hashtags: 'フィッポマップ,フィッポ,fippomap,fippo,魚釣り,釣果'
+    complete_edit:
+      title: '更新完了しました！！'
     form:
       more_info: 'もっと詳しく '

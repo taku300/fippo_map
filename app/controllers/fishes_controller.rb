@@ -7,7 +7,12 @@ class FishesController < ApplicationController
     @fishes = Fish.includes(:species)
   end
 
-  def show; end
+  def show
+    @fish = Fish.find(params[:id])
+    session[:latitude] = @fish.latitude
+    session[:longitude] = @fish.longitude
+    @user = @fish.user
+  end
 
   def new
     session[:latitude] = params[:latitude]
@@ -34,9 +39,31 @@ class FishesController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    Fish.transaction do
+      if Species.exists?(name: species_params[:species])
+        species = Species.find_by(name: species_params[:species])
+      else
+        species = Species.create!(name: species_params[:species])
+      end
+      @fish.assign_attributes(fish_params)
+      @fish.species_id = species.id
+      @fish.save!
+      redirect_to complete_edit_fishes_path, notice: t('defaults.message.updated', item: Fish.model_name.human)
+    rescue ActiveRecord::RecordInvalid => exception
+      flash.now[:alert] = t('defaults.message.not_updated', item: Fish.model_name.human)
+      render action: :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @fish.destroy!
+    redirect_to fishes_path, notice: t('defaults.message.deleted', item: Fish.model_name.human)
+  end
 
   def complete; end
+
+  def complete_edit; end
 
   # ajaxで現在の気象情報を取得するためのメソッド
   def ajax_current_weather
@@ -57,6 +84,8 @@ class FishesController < ApplicationController
   end
 
   def set_fish
-    @fish = @fish = Fish.find(params[:id])
+    @fish = current_user.fishes.find(params[:id])
+    session[:latitude] = @fish.latitude
+    session[:longitude] = @fish.longitude
   end
 end

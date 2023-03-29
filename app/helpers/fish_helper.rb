@@ -54,7 +54,7 @@ module FishHelper
     when 801
       'sunny'
     when 802, 803, 804
-      'coludy'
+      'cloudy'
     end
   end
 
