@@ -8,6 +8,9 @@ ja:
     error_notification:
       default_message: "エラーがあります。確認してください。"
     labels:
+      user:
+        email: 'メールアドレス'
+        password: 'パスワード'
     hints:
       user:
         is_published: '投稿した釣果を公開します。'

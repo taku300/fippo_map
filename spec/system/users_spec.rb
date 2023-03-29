@@ -30,7 +30,7 @@ RSpec.describe 'Users', type: :system do
         fill_in '自己紹介', with: 'password'
         click_button '登録する'
         expect(page).to have_content 'ユーザーを作成できませんでした'
-        expect(current_path).to eq new_user_path
+        expect(current_path).to eq users_path
       end
     end
   end
