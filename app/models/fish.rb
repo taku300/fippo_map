@@ -1,6 +1,8 @@
 class Fish < ApplicationRecord
   belongs_to :user
   belongs_to :species
+  has_many :likes, dependent: :destroy
+  has_many :users, through: :likes
   mount_uploader :image, FishImageUploader
 
   enum weather: { fine: 0, sunny: 1, cloudy: 2, fog: 3, drizzle: 4, rain: 5, snow: 6, thunderstorm: 7 }
