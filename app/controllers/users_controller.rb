@@ -22,6 +22,16 @@ class UsersController < ApplicationController
 
   def update; end
 
+  def add_published
+    current_user.update!(is_published: true)
+    redirect_to mypage_dashboard_path
+  end
+
+  def remove_published
+    current_user.update!(is_published: false)
+    redirect_to mypage_dashboard_path
+  end
+
   private
 
   def user_params

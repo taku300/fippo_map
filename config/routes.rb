@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
-  resources :users, only: %i[new create show edit update]
+  resources :users, only: %i[new create show edit update] do
+    get 'add_published', on: :collection
+    get 'remove_published', on: :collection
+  end
   resources :fishes do
     get :complete, on: :collection
     get :complete_edit, on: :collection
