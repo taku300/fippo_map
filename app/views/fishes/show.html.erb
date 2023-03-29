@@ -12,7 +12,7 @@
         <div class="flex flex-col justify-between">
           <%= link_to t('.follow'), '#', class: "inline-flex items-center rounded-full bg-indigo-600 px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0" %>
           <div class="flex">
-            <% if @user == current_user %>
+            <% if current_user.own?(@fish) %>
               <%= link_to t('defaults.edit'), edit_fish_path(@fish), class: "inline-flex items-center rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1", data: {turbo: false} %>
               <%= button_to t('defaults.delete'), fish_path(@fish), method: :delete, class: "inline-flex items-center rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1", onclick: "return confirm('" + t('defaults.message.delete_confirm') + "')", data: {turbo: false} %>
             <% end %>
@@ -23,15 +23,21 @@
     <div class="flex justify-center">
       <div>
         <%= image_tag @fish.image.url, class: 'rounded-lg mt-10', id: 'preview', size: '200x200' %>
-        <div class="flex justify-between items-cente mt-1 mb-10">
-          <div class="flex">
-            <div class="w-3 flex items-center mr-1">
-              <%= heroicon 'heart' %>
-            </div>
-            <p class=" text-xs">1</p>
+        <%= turbo_frame_tag "like" do %>
+          <div class="flex justify-between items-start mb-10">
+            <% if current_user.like?(@fish) %>
+              <%= button_to like_path(current_user.likes.find_by(fish_id: @fish.id)), method: :delete do %>
+                <%= heroicon 'heart', options: { class: "w-4 mr-1", fill: "#ff3399" } %>
+              <% end %>
+            <% else %>
+              <%= button_to likes_path(fish_id: @fish.id), method: :post do %>
+                <%= heroicon 'heart', options: { class: "w-4 mr-1 bg-primary-500", fill: '#ffffff', stroke: '#ff3399', 'stroke-width': '2' } %>
+              <% end %>
+            <% end %>
+            <p class="text-[13px] flex-grow"><%= @fish.likes.count %></p>
+            <p class="text-[13px] text-slate-500"><%= @fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></p>
           </div>
-          <p class=" text-xs"><%= @fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></p>
-        </div>
+        <% end %>
       </div>
     </div>
     <div class="my-3"><%= simple_format(@fish.body)%></div>

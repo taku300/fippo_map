@@ -17,6 +17,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :fishes, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_fishes, through: :likes, source: :fish
   mount_uploader :avatar, AvatarUploader
 
   validates :name, presence: true, length: { maximum: 255 }
@@ -26,4 +28,20 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :introduction, length: { maximum: 255 }, allow_blank: true
   validates :reset_password_token, uniqueness: true, allow_nil: true
+
+  def own?(object)
+    id == object.user_id
+  end
+
+  def like(fish)
+    like_fishes << fish
+  end
+
+  def unlike(fish)
+    like_fishes.destroy(fish)
+  end
+
+  def like?(fish)
+    like_fishes.include?(fish)
+  end
 end
