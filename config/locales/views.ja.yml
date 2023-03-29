@@ -76,3 +76,14 @@ ja:
       title: '更新完了しました！！'
     form:
       more_info: 'もっと詳しく '
+  mypage:
+    dashboard:
+      published: '公開'
+      not_published: '非公開'
+      published?: '投稿を公開しますか？'
+      not_published?: '投稿を非公開にしますか？'
+      status: 'STATUS'
+      post_num: '投稿数'
+      follow_num: 'フォロー中'
+      follower_num: 'フォロワー'
+      grade: 'グレード'
