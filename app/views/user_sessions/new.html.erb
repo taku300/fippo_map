@@ -10,7 +10,7 @@
     <% end %>
   </div>
   <div class='flex justify-center mt-5 text-indigo-600'>
-    <%=link_to t('.sign_up'), new_user_path, class: 'mr-10' %>
-    <%=link_to t('.forgotten_password'), new_password_reset_path %>
+    <%=link_to t('.sign_up'), new_user_path, class: 'mr-10', data: { turbo: false } %>
+    <%=link_to t('.forgotten_password'), new_password_reset_path, data: { turbo: false } %>
   </div>
 </div>

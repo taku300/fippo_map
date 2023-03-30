@@ -25,7 +25,14 @@
     <div class="flex justify-center">
       <div>
         <%= image_tag @fish.image.url, class: 'rounded-lg mt-10', id: 'preview', size: '200x200' %>
-        <%= render 'like', { fish: @fish } %>
+        <%= turbo_frame_tag "like" do %>
+        <div class="flex justify-between items-start mb-10">
+          <% if logged_in? %>
+          <%= render 'like', { fish: @fish } %>
+          <% end %>
+          <p class="text-[13px] text-slate-500"><%= @fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></p>
+        </div>
+<% end %>
       </div>
     </div>
     <div class="my-3"><%= simple_format(@fish.body)%></div>

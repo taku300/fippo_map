@@ -28,7 +28,7 @@ class FishesController < ApplicationController
   end
 
   def create
-    authorize(@fish)
+    authorize(Fish)
 
     Fish.transaction do
       if Species.exists?(name: species_params[:species])
