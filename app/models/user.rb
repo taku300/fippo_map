@@ -45,4 +45,8 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["access_count_to_reset_password_page", "avatar", "created_at", "crypted_password", "email", "id", "introduction", "is_published", "name", "reset_password_email_sent_at", "reset_password_token", "reset_password_token_expires_at", "salt", "updated_at"]
+  end
 end

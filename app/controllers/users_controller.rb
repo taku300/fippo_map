@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      redirect_to root_path, notice: t('defaults.message.created', item: User.model_name.human)
+      redirect_to fishes_path, notice: t('defaults.message.created', item: User.model_name.human)
     else
       flash.now[:alert] = t('defaults.message.not_created', item: User.model_name.human)
       render :new, status: :unprocessable_entity

@@ -149,3 +149,6 @@ Lint/UselessAssignment:
 
 Naming/RescuedExceptionsVariableName:
   Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false

@@ -1,15 +1,19 @@
 <table class="table-auto mt-3">
   <tbody>
     <tr>
-      <td class=" w-24"><%= t('.species') %></td>
+      <td><%= Fish.human_attribute_name(:fishing_date) %></td>
+      <td><%= fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></td>
+    </tr>
+    <tr>
+      <td class=" w-24"><%= Fish.human_attribute_name(:species) %></td>
       <td><%= fish.species.name %></td>
     </tr>
     <tr>
-      <td><%= t('.size') %></td>
+      <td><%= Fish.human_attribute_name(:size) %></td>
       <td><%= fish.size %></td>
     </tr>
     <tr>
-      <td><%= t('.weather') %></td>
+      <td><%= Fish.human_attribute_name(:weather) %></td>
       <td><%= fish.weather_i18n %>　<%= fish.temperature%>℃</td>
     </tr>
     <tr>
@@ -17,7 +21,7 @@
       <td><%= fish.wind_direction_i18n %>　<%= fish.wind_speed %>m/s</td>
     </tr>
     <tr>
-      <td><%= t('.tide_name') %></td>
+      <td><%= Fish.human_attribute_name(:tide_name) %></td>
       <td><%= fish.tide_name_i18n %></td>
     </tr>
   </tbody>
