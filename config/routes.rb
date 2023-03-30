@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
   resources :users, only: %i[new create show edit update] do
+    resource :follows, only: [:create, :destroy]
     get 'add_published', on: :collection
     get 'remove_published', on: :collection
   end
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
   resources :likes, only: %i[create destroy]
   namespace :mypage do
     get 'dashboard'
-    get 'follow'
-    get 'follower'
+    get 'follows'
+    get 'followers'
   end
 end

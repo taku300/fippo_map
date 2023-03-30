@@ -42,12 +42,12 @@ class UsersController < ApplicationController
 
   def add_published
     current_user.update!(is_published: true)
-    redirect_to mypage_dashboard_path
+    redirect_to request.referer
   end
 
   def remove_published
     current_user.update!(is_published: false)
-    redirect_to mypage_dashboard_path
+    redirect_to request.referer
   end
 
   private

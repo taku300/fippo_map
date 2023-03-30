@@ -13,12 +13,7 @@ marker[<%= fish.id %>] = new markerWithLabel.MarkerWithLabel({
 infoWindow[<%= fish.id %>] = new google.maps.InfoWindow({
   position: markerLatLng,
   content: `
-  <div class="sample">サイズ：<%= fish.size %></div>
-  <div class="sample">天　気：<%= fish.weather_i18n %></div>
-  <div class="sample">風　向：<%= fish.wind_direction_i18n %></div>
-  <div class="sample">風　速：<%= fish.wind_speed %> m/s</div>
-  <div class="sample">気　温：<%= fish.temperature %> ℃</div>
-  <div class="sample">潮　名：<%= fish.tide_name_i18n %></div>
+  <%= render 'detail', { fish: fish } %>
   `,
   pixelOffset: new google.maps.Size(0, -50)
 });

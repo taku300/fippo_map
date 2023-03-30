@@ -1,0 +1,24 @@
+<table class="table-auto mt-3">
+  <tbody>
+    <tr>
+      <td class=" w-24"><%= t('.species') %></td>
+      <td><%= fish.species.name %></td>
+    </tr>
+    <tr>
+      <td><%= t('.size') %></td>
+      <td><%= fish.size %></td>
+    </tr>
+    <tr>
+      <td><%= t('.weather') %></td>
+      <td><%= fish.weather_i18n %>　<%= fish.temperature%>℃</td>
+    </tr>
+    <tr>
+      <td><%= t('.wind') %></td>
+      <td><%= fish.wind_direction_i18n %>　<%= fish.wind_speed %>m/s</td>
+    </tr>
+    <tr>
+      <td><%= t('.tide_name') %></td>
+      <td><%= fish.tide_name_i18n %></td>
+    </tr>
+  </tbody>
+</table>
