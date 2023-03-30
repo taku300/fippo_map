@@ -6,7 +6,8 @@ class FishesController < ApplicationController
   def index
     authorize(Fish)
 
-    @fishes = Fish.includes(:species)
+    @q = Fish.joins(:user).where(user: { is_published: true }).ransack(params[:q])
+    @fishes = @q.result(distinct: true).includes(:species)
   end
 
   def show

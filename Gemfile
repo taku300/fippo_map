@@ -67,6 +67,7 @@ gem 'dotenv-rails'
 gem 'date_validator'
 gem 'httpclient'
 gem "pundit"
+gem 'ransack'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -78,11 +78,7 @@ ja:
     form:
       more_info: 'もっと詳しく '
     detail:
-      species: '魚種'
-      size: 'サイズ'
-      weather: '天気'
       wind: '風'
-      tide_name: '潮名'
   mypage:
     dashboard:
     published:
