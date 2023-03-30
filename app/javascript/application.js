@@ -5,6 +5,15 @@ import jquery from "jquery"
 window.$ = jquery
 
 $(document).on("turbo:load", function() {
+  // ローディング
+  var loader = $('.loader-wrap');
+  $(window).on('load',function(){
+    loader.fadeOut();
+  });
+  setTimeout(function(){
+    loader.fadeOut();
+  },2000);
+
   //flashメッセージを閉じる
   var $jsFlashClose = $('.js-flash-close')
   $jsFlashClose.on('click', function() {
