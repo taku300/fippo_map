@@ -12,6 +12,10 @@ ja:
     show: '詳細'
     delete: '削除'
     back: '戻る'
+    follow: 'フォローする'
+    followed: 'フォロー中'
+    published: '公開'
+    not_published: '非公開'
     password_reset: 'パスワードリセット'
     unspecified: '指定なし'
     terms_of_service: '利用規約'
@@ -61,11 +65,6 @@ ja:
       title: '釣果を投稿'
       more_info: 'もっと詳しく '
     show:
-      follow: 'フォローする'
-      species: '魚種'
-      size: 'サイズ'
-      weather: '天気'
-      tide_name: '潮名'
     edit:
       title: '釣果を更新'
     complete:
@@ -78,12 +77,18 @@ ja:
       title: '更新完了しました！！'
     form:
       more_info: 'もっと詳しく '
+    detail:
+      species: '魚種'
+      size: 'サイズ'
+      weather: '天気'
+      wind: '風'
+      tide_name: '潮名'
   mypage:
     dashboard:
-      published: '公開'
-      not_published: '非公開'
+    published:
       published?: '投稿を公開しますか？'
       not_published?: '投稿を非公開にしますか？'
+    status:
       status: 'STATUS'
       post_num: '投稿数'
       follow_num: 'フォロー中'

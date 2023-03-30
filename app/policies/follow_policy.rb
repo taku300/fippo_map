@@ -1,0 +1,2 @@
+class FollowPolicy < ApplicationPolicy
+end
