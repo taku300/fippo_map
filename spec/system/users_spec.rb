@@ -14,7 +14,7 @@ RSpec.describe 'Users', type: :system do
         fill_in '自己紹介', with: 'password'
         click_button '登録する'
         expect(page).to have_content 'ユーザーを作成しました'
-        expect(current_path).to eq root_path
+        expect(current_path).to eq fishes_path
         expect(page).to have_selector("img[src$='sample.jpg']")
       end
     end

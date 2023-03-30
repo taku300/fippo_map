@@ -38,8 +38,6 @@ class Fish < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["body", "created_at", "fishing_date", "id", "image", "latitude", "longitude", "size", "species_id", "temperature", "tide_name", "updated_at", "user_id", "weather", "wind_direction", "wind_speed"]
+    ["body", "created_at", "fishing_date", "id", "user_id", "image", "latitude", "longitude", "size", "species_id", "temperature", "tide_name", "updated_at", "user_id", "weather", "wind_direction", "wind_speed"]
   end
-
-
 end

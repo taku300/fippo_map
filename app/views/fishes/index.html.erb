@@ -8,7 +8,7 @@
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full">
     <%= render 'center_pin' %></div>
 <% end %>
-<div class="absolute top-32 right-0">
+<div class="absolute bottom-48 right-0">
   <%= render 'current_position'%></div>
 
 <script>
@@ -38,6 +38,7 @@
         mapTypeId: 'terrain',
         mapTypeControl: false,
         streetViewControl: false,
+        fullscreenControl: false,
       });
       current_marker = new google.maps.Marker({ // 現在地にマーカーを立てる
         position: currentLatlng,
@@ -59,6 +60,7 @@
         mapTypeId: 'terrain',
         mapTypeControl: false,
         streetViewControl: false,
+        fullscreenControl: false,
       });
       marker();
     }
