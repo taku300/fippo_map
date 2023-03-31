@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get :complete, on: :collection
     get :complete_edit, on: :collection
     get :ajax_current_weather, on: :collection
+    post :ajax_history_weather, on: :collection
   end
   resources :likes, only: %i[create destroy]
   namespace :mypage do

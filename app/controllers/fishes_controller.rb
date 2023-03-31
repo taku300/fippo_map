@@ -1,5 +1,6 @@
 class FishesController < ApplicationController
   include FishHelper
+  skip_before_action :verify_authenticity_token
   skip_before_action :require_login, only: %i[index show]
   before_action :set_fish, only: %i[show edit update destroy]
 
@@ -40,6 +41,8 @@ class FishesController < ApplicationController
       @fish = current_user.fishes.new(fish_params)
       @fish.species_id = species.id
       @fish.save!
+      session[:latitude] = params[:fish][:latitude]
+      session[:longitude] = params[:fish][:longitude]
       redirect_to complete_fishes_path, notice: t('defaults.message.created', item: Fish.model_name.human)
     rescue ActiveRecord::RecordInvalid => exception
       flash.now[:alert] = t('defaults.message.not_created', item: Fish.model_name.human)
@@ -59,6 +62,8 @@ class FishesController < ApplicationController
       @fish.assign_attributes(fish_params)
       @fish.species_id = species.id
       @fish.save!
+      session[:latitude] = params[:fish][:latitude]
+      session[:longitude] = params[:fish][:longitude]
       redirect_to complete_edit_fishes_path, notice: t('defaults.message.updated', item: Fish.model_name.human)
     rescue ActiveRecord::RecordInvalid => exception
       flash.now[:alert] = t('defaults.message.not_updated', item: Fish.model_name.human)
@@ -82,8 +87,19 @@ class FishesController < ApplicationController
     date = Time.current
     latitude = session[:latitude]
     longitude = session[:longitude]
+    response = weather_current_request(latitude, longitude)
     respond_to do |format|
-      format.json { render json: imput_default(date, latitude, longitude) }
+      format.json { render json: input_current_default(date, latitude, longitude, response) }
+    end
+  end
+
+  def ajax_history_weather
+    date = params[:date]
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    response = weather_history_request(date, latitude, longitude)
+    respond_to do |format|
+      format.json { render json: input_history_default(date.to_time, latitude, longitude, response) }
     end
   end
 
