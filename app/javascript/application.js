@@ -72,40 +72,44 @@ $(document).on("turbo:load", function() {
       dataType : "json"
     })
     .done(function(data){
-      console.log('default input true');
+      console.log('default current input true');
       console.log(data)
-      $fishFishingDate.val(data.fishing_date);
-      $fishLatitude.val(data.latitude);
-      $fishLongitude.val(data.longitude);
-      $fishWeather.val(data.weather);
-      $fishWindDirection.val(data.wind_direction);
-      $fishWindSpeed.val(data.wind_speed);
-      $fishTemperature.val(data.temperature);
-      $fishTideName.val(data.tide_name);
+      inputDefault(data)
     })
     .fail(function(XMLHttpRequest, textStatus, errorThrown){
       alert('気象情報を取得できませんでした。');
     });
   }
-})
 
-$(document).on("turbo:render", function() {
-  //flashメッセージを閉じる
-  var $jsFlashClose = $('.js-flash-close')
-  $jsFlashClose.on('click', function() {
-    $(this).parent().parent().slideToggle(200)
-  })
+  // 日付が変更された時のデフォルトinput処理
+  $fishFishingDate.on('change', function () {
+    if (confirm('日付と位置情報から気象情報を再取得しますか？')) {
+      $.ajax({
+          url: '/fishes/ajax_history_weather',
+          type: 'POST',
+          cache: false,
+          dataType: 'json',
+          data: { date: $fishFishingDate.val(), latitude: $fishLatitude.val(), longitude: $fishLongitude.val() },
+          })
+          .done(function(data) {
+            console.log('default history input true');
+            console.log(data);
+            inputDefault(data)
+          })
+          .fail(function(xhr) {
+            alert('気象情報を取得できませんでした。');
+          })
+    }
+  });
 
-  // profileの表示・非表示
-  var $userMenuButton = $("#js-user-menu-button");
-  $userMenuButton.on('click', function() {
-    $(this).next().slideToggle(200)
-  })
-
-  //もっと詳しくボタン
-  var $addInfo = $(".js-add-info");
-  $addInfo.on('click', function() {
-    $(this).next().slideToggle(400)
-    $(this).children().toggleClass('rotate-90')
-  })
+  function inputDefault(data) {
+    $fishFishingDate.val(data.fishing_date);
+    $fishLatitude.val(data.latitude);
+    $fishLongitude.val(data.longitude);
+    $fishWeather.val(data.weather);
+    $fishWindDirection.val(data.wind_direction);
+    $fishWindSpeed.val(data.wind_speed);
+    $fishTemperature.val(data.temperature);
+    $fishTideName.val(data.tide_name);
+  }
 })

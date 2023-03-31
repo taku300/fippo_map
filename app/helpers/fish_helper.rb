@@ -95,19 +95,42 @@ module FishHelper
     end
   end
 
-  def weather_request(latitude, longitude)
+  def weather_current_request(latitude, longitude)
     client    = HTTPClient.new
     url       = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + ENV.fetch('OPEN_WEATHER_API_KEY') + "&lang=ja&units=metric"
     response  = client.get(url)
     JSON.parse(response.body)
   end
 
-  def imput_default(date, latitude, longitude)
-    response = weather_request(latitude, longitude)
+  def weather_history_request(date, latitude, longitude)
+    date_unix = Time.parse(date).to_i.to_s
+    client    = HTTPClient.new
+    url       = "https://api.openweathermap.org/data/3.0/onecall/timemachine?lat=" + latitude + "&lon=" + longitude + "&dt=" + date_unix + "&appid=" + ENV.fetch('OPEN_WEATHER_API_KEY') + "&lang=ja&units=metric"
+    response  = client.get(url)
+    JSON.parse(response.body)
+  end
+
+  def input_current_default(date, latitude, longitude, response)
     weather = calculation_weather(response['weather'][0]['id'])
     wind_direction = calculation_wind_direction(response['wind']['deg'])
     wind_speed = response['wind']['speed']
     temperature = response['main']['temp']
+    tide_name = calculation_tide(date)
+    default = { fishing_date: date.strftime("%Y-%m-%d %H:%M:%S"),
+                latitude:,
+                longitude:,
+                weather:,
+                wind_direction:,
+                wind_speed:,
+                temperature:,
+                tide_name: }
+  end
+
+  def input_history_default(date, latitude, longitude, response)
+    weather = calculation_weather(response['data'][0]['weather'][0]['id'])
+    wind_direction = calculation_wind_direction(response['data'][0]['wind_deg'])
+    wind_speed = response['data'][0]['wind_speed']
+    temperature = response['data'][0]['temp']
     tide_name = calculation_tide(date)
     default = { fishing_date: date.strftime("%Y-%m-%d %H:%M:%S"),
                 latitude:,
