@@ -32,8 +32,7 @@ RSpec.describe 'UserSessions', type: :system do
       it 'ログアウト処理が成功する' do
         login_as(user)
         find('#js-user-menu-button').click
-        find('.js-flash-close').click
-        click_link 'ログアウト'
+        click_button 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
         expect(current_path).to eq login_path
       end
