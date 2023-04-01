@@ -77,8 +77,8 @@ ja:
       title_ogp: '投稿完了'
       to_map: 'マップに戻る'
       to_twitter: 'Twitterに投稿'
-      text: 'フィッポマップで釣果を投稿しました！！'
-      hashtags: 'フィッポマップ,フィッポ,fippomap,fippo,魚釣り,釣果'
+      text: 'FippoMap (フィッポマップ)で釣果を投稿しました！！'
+      hashtags: 'FippoMap,fippo,フィッポマップ,フィッポ,魚釣り,釣果'
     complete_edit:
       title: '更新完了しました！！'
     form:
