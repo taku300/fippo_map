@@ -13,7 +13,30 @@ marker[<%= fish.id %>] = new markerWithLabel.MarkerWithLabel({
 infoWindow[<%= fish.id %>] = new google.maps.InfoWindow({
   position: markerLatLng,
   content: `
-  <%= render 'detail', { fish: fish } %>
+          <table class="table-auto mt-3">
+          <tbody>
+            <tr>
+              <td class="w-14"><%= Fish.human_attribute_name(:fishing_date) %></td>
+              <td><%= fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></td>
+            </tr>
+            <tr>
+              <td><%= Fish.human_attribute_name(:size) %></td>
+              <td><%= fish.size %></td>
+            </tr>
+            <tr>
+              <td><%= Fish.human_attribute_name(:weather) %></td>
+              <td><%= fish.weather_i18n %>　<%= fish.temperature%>℃</td>
+            </tr>
+            <tr>
+              <td><%= t('.wind') %></td>
+              <td><%= fish.wind_direction_i18n %>　<%= fish.wind_speed %>m/s</td>
+            </tr>
+            <tr>
+              <td><%= Fish.human_attribute_name(:tide_name) %></td>
+              <td><%= fish.tide_name_i18n %></td>
+            </tr>
+          </tbody>
+        </table>
   `,
   pixelOffset: new google.maps.Size(0, -50)
 });

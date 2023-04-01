@@ -61,6 +61,8 @@ ja:
       success: 'パスワードを変更しました'
       fail: 'パスワードの変更に失敗しました'
   fishes:
+    detail:
+      wind: '風'
     new:
       title: '釣果を投稿'
       more_info: 'もっと詳しく '

@@ -12,8 +12,8 @@
   <%= render 'current_position'%></div>
 
 <script>
-  var lat                             // 緯度
-  var lng                             // 経度
+  var lat = 35.6812405                // 緯度
+  var lng = 139.7649361               // 経度
   var currentLatlng                   // 現在地の緯度, 経度
   var latlng;                         // 中心の緯度, 経度
   var map;                            // 表示用のマップ
@@ -33,7 +33,7 @@
       <% end %>
       latlng = new google.maps.LatLng(lat, lng);
       map = new google.maps.Map(document.getElementById('maps'), {
-        zoom: 10,
+        zoom: 8,
         center: latlng,
         mapTypeId: 'terrain',
         mapTypeControl: false,
@@ -48,14 +48,13 @@
     }
     // 現在位置を取得できなかった時
     function fail(error) {
-      alert('位置情報の取得に失敗しました。エラーコード：' + error.code);
       <% if session['latitude'] && session['longitude'] %>
         lat = <%= session['latitude'] %>;
         lng = <%= session['longitude'] %>;
       <% end %>
-      latlng = new google.maps.LatLng(35.6812405, 139.7649361); //東京駅
+      latlng = new google.maps.LatLng(lat, lng); //東京駅
       map = new google.maps.Map(document.getElementById('maps'), {
-        zoom: 10,
+        zoom: 8,
         center: latlng,
         mapTypeId: 'terrain',
         mapTypeControl: false,
