@@ -16,6 +16,7 @@ ja:
         is_published: '投稿した釣果を公開します。'
         avatar: '10MB以下 jpg jpeg gif png'
         password: '8以上で入力してください'
+        species: '魚種はカタカナで入力してください'
       fish:
         fishing_date: '釣った日付(年-月-日 時:分:秒)'
         size: 'cm'

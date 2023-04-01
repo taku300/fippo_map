@@ -26,6 +26,12 @@ $(document).on("turbo:load", function() {
     $(this).next().slideToggle(200);
   })
 
+  // profileの表示・非表示
+  var $searchClose = $(".js-search-close");
+  $searchClose.on('click', function() {
+    $(this).prev().slideToggle(200);
+  })
+
   //釣果一覧画面の投稿する時のボタン
   var $AddPost = $(".js-add-post");
   var $toFormPost = $(".js-to-form-post");
@@ -55,6 +61,7 @@ $(document).on("turbo:load", function() {
   var $fishFishingDate = $('#fish_fishing_date');
   var $fishLatitude = $('#fish_latitude');
   var $fishLongitude = $('#fish_longitude');
+  var $fishSpecies = $('#fish_species');
   var $fishWeather = $('#fish_weather');
   var $fishWindDirection = $('#fish_wind_direction');
   var $fishWindSpeed = $('#fish_wind_speed');
@@ -81,25 +88,32 @@ $(document).on("turbo:load", function() {
     });
   }
 
+  // カタカナバリデーション
+  $fishSpecies.on('change', function () {
+    console.log($(this).val())
+    if(!$(this).val().match(/^[ァ-ヶー　]+$/)){    //"ー"の後ろの文字は全角スペースです。
+      console.log('katakana validation true');
+      $(this).val('')
+    }
+  })
+
   // 日付が変更された時のデフォルトinput処理
   $fishFishingDate.on('change', function () {
-    if (confirm('日付と位置情報から気象情報を再取得しますか？')) {
-      $.ajax({
-          url: '/fishes/ajax_history_weather',
-          type: 'POST',
-          cache: false,
-          dataType: 'json',
-          data: { date: $fishFishingDate.val(), latitude: $fishLatitude.val(), longitude: $fishLongitude.val() },
-          })
-          .done(function(data) {
-            console.log('default history input true');
-            console.log(data);
-            inputDefault(data)
-          })
-          .fail(function(xhr) {
-            alert('気象情報を取得できませんでした。');
-          })
-    }
+    $.ajax({
+        url: '/fishes/ajax_history_weather',
+        type: 'POST',
+        cache: false,
+        dataType: 'json',
+        data: { date: $fishFishingDate.val(), latitude: $fishLatitude.val(), longitude: $fishLongitude.val() },
+        })
+        .done(function(data) {
+          console.log('default history input true');
+          console.log(data);
+          inputDefault(data)
+        })
+        .fail(function(xhr) {
+          alert('気象情報を取得できませんでした。');
+        })
   });
 
   function inputDefault(data) {
