@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'www.fippo-map.com' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    user_name: ENV['SENDGRID_USERNAME'],
+    user_name: 'apikey',
     password: ENV['SENDGRID_PASSWORD'],
     domain: "www.fippo-map.com",
     address: "smtp.SendGrid.net",
