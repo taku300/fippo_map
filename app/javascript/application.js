@@ -26,7 +26,7 @@ $(document).on("turbo:load", function() {
     $(this).next().slideToggle(200);
   })
 
-  // profileの表示・非表示
+  // 検索の表示・非表示
   var $searchClose = $(".js-search-close");
   $searchClose.on('click', function() {
     $(this).prev().slideToggle(200);
