@@ -1,6 +1,6 @@
 ja:
   defaults:
-    fippo_map: 'FiipoMap (フィッポマップ)'
+    fippo_map: 'FippoMap (フィッポマップ)'
     map: 'マップ'
     login: 'ログイン'
     register: '登録'

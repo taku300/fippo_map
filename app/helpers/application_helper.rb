@@ -10,7 +10,7 @@ module ApplicationHelper
       reverse: true,
       separator: '|', # Webサイト名とページタイトルを区切るために使用されるテキスト
       description: '文字だけの情報ではどこで魚が釣れるか分かりづらい、釣った魚の情報を簡単に記録できるツールがないといった悩みを持った人に、 視覚的に投稿、閲覧、管理できる価値を与える、マップに特化した釣り人のためのSNSです!!',
-      keywords: 'fiipo map,フィッポマップ,魚釣り', # キーワードを「,」区切りで設定する
+      keywords: 'fippo map,フィッポマップ,魚釣り', # キーワードを「,」区切りで設定する
       canonical: request.original_url, # 優先するurlを指定する
       noindex: !Rails.env.production?,
       icon: [ # favicon、apple用アイコンを指定する
