@@ -81,7 +81,7 @@ Rails.application.configure do
       address: 'smtp.sendgrid.net',
       port: 587,
       domain: 'heroku.com',
-      user_name: 'apikey![ss_ 2021-02-17 0.58.25.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/96314/30d49808-0ee1-f09e-8689-38d2e9b5dde4.jpeg)
+      user_name: ENV['SENDGRID_USERNAME'],
 ',
       password: ENV['SENDGRID_APIKEY'],
       authentication: :plain,
