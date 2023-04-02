@@ -6,7 +6,7 @@
                   size: "large",
                   text: t('.text'),
                   hashtags: t('.hashtags'),
-                  url: 'http://' + ENV.fetch('DOMAIN') + '/fishes/' + @fish.id.to_s
+                  url: ENV.fetch('ORIGIN') + '/fishes/' + @fish.id.to_s
                   }
     %>
   </div>
