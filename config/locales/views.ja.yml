@@ -1,0 +1,97 @@
+ja:
+  defaults:
+    fippo_map: 'FippoMap (フィッポマップ)'
+    map: 'マップ'
+    login: 'ログイン'
+    register: '登録'
+    logout: 'ログアウト'
+    my_page: 'マイページ'
+    post: '投稿'
+    search_word: '検索ワード'
+    edit: '編集'
+    show: '詳細'
+    delete: '削除'
+    back: '戻る'
+    follow: 'フォローする'
+    followed: 'フォロー中'
+    published: '公開'
+    not_published: '非公開'
+    password_reset: 'パスワードリセット'
+    unspecified: '指定なし'
+    terms_of_service: '利用規約'
+    privacy_policy: 'プライバシーポリシー'
+    copywriting: '© 2023 Fippo map'
+    wind: '風'
+    message:
+      require_login: 'ログインしてください'
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました。"
+      delete_confirm: '削除しますか？'
+      not_authorized: '権限がありません'
+  users:
+    new:
+      title: 'ユーザー登録'
+    edit:
+      title: 'ユーザー更新'
+    show:
+      title: 'ユーザ詳細'
+  user_sessions:
+    new:
+      title: 'ログイン'
+      submit: 'ログインする'
+      email: 'メールアドレス'
+      password: 'パスワード'
+      sign_up: '新規登録'
+      forgotten_password: 'パスワードを忘れた方'
+    create:
+      login: 'ログインしました'
+      not_login: 'ログインできませんでした'
+    destroy:
+      logout: 'ログアウトしました'
+  password_resets:
+    new:
+      title: 'パスワードリセット申請'
+      submit: '送信'
+    edit:
+      title: 'パスワードリセット'
+    create:
+      success: 'パスワードリセット手順を送信しました'
+    update:
+      success: 'パスワードを変更しました'
+      fail: 'パスワードの変更に失敗しました'
+  fishes:
+    index:
+      title: 'マップ'
+    new:
+      title: '釣果投稿'
+      more_info: 'もっと詳しく '
+    show:
+      title: '釣果詳細'
+    edit:
+      title: '釣果更新'
+    complete:
+      title: '投稿完了しました！！'
+      title_ogp: '投稿完了'
+      to_map: 'マップに戻る'
+      to_twitter: 'Twitterに投稿'
+      text: 'FippoMap (フィッポマップ)で釣果を投稿しました！！'
+      hashtags: 'FippoMap,fippo,フィッポマップ,フィッポ,魚釣り,釣果'
+    complete_edit:
+      title: '更新完了しました！！'
+    form:
+      more_info: 'もっと詳しく '
+  mypage:
+    dashboard:
+      title: 'ダッシュボード'
+    published:
+      published?: '投稿を公開しますか？'
+      not_published?: '投稿を非公開にしますか？'
+    status:
+      status: 'STATUS'
+      post_num: '投稿数'
+      follow_num: 'フォロー中'
+      follower_num: 'フォロワー'
+      grade: 'グレード'

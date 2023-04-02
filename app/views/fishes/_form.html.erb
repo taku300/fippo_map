@@ -1,0 +1,89 @@
+<%= simple_form_for fish, builder: SimpleForm::Tailwind::FormBuilder, data: { turbo: false } do |f| %>
+  <%= f.input :image, as: :file, onchange: 'previewImage()' %>
+  <%= f.hidden_field :image_cache %>
+  <%= image_tag fish.image.url, class: 'mb-10 rounded-lg mx-auto', id: 'preview', size: '200x200' %>
+  <%= f.input :fishing_date, as: :string %>
+  <%= f.input :body, as: :text, input_html: {rows: 5} %>
+  <%= f.label :species, class: 'block text-sm font-semibold leading-6 text-gray-900', error_class: 'block text-sm font-semibold leading-6 text-gray-900'%>
+  <%= f.text_field :species, list: 'fish_species_id', class: 'block w-full rounded-md border-0 py-2 px-3.5 mt-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', value: fish.species_default, required: "required" %>
+  <p class="block text-gray-700 text-xs italic mt-1 mb-10"><%= t('simple_form.hints.user.species') %></p>
+  <datalist id="fish_species_id">
+  <% Species.pluck(:name).each do |species| %>
+    <option value="<%= species %>"></option>
+  <% end %>
+  </datalist>
+  <div id="maps" class="w-full h-[calc((100vh_-_64px_-_64px)_*_0.5)] relative" ></div>
+  <p class="js-add-info my-10" ><%= t('.more_info') %> <span class="inline-block origin-center duration-200">▶︎</span></p>
+  <div class="hidden">
+    <%= f.input :size %>
+    <%= f.input :latitude, as: :hidden %>
+    <%= f.input :longitude, as: :hidden %>
+    <%= f.input :weather, as: :select, collection: Fish.weathers_i18n.invert %>
+    <%= f.input :wind_direction, as: :select, collection: Fish.wind_directions_i18n.invert %>
+    <%= f.input :wind_speed, as: :string %>
+    <%= f.input :temperature, as: :string %>
+    <%= f.input :tide_name, as: :select, collection: Fish.tide_names_i18n.invert %>
+  </div>
+  <%= f.button :submit %>
+<% end %>
+
+<script>
+  function previewImage() {
+  const target = this.event.target;
+  const file = target.files[0];
+  const reader  = new FileReader();
+  reader.onloadend = function () {
+      const preview = document.querySelector("#preview")
+      if(preview) {
+          preview.src = reader.result;
+      }
+  }
+  if (file) {
+      reader.readAsDataURL(file);
+  }
+  }
+
+  // マップ
+  var lat                             // 緯度
+  var lng                             // 経度
+  var latlng;                         // 中心の緯度, 経度
+  var map;                            // 表示用のマップ
+  var marker;                    // 釣果用のマーカー
+  var fishingDate = document.getElementById('fish_fishing_date')
+  var Latitude = document.getElementById('fish_latitude')
+  var Longitude = document.getElementById('fish_longitude')
+
+  function initMap() {
+      lat = <%= session['latitude'] %>;
+      lng = <%= session['longitude'] %>;
+      latlng = new google.maps.LatLng(lat, lng);
+      map = new google.maps.Map(document.getElementById('maps'), {
+        zoom: 8,
+        center: latlng,
+        mapTypeId: 'terrain',
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+      });
+      marker = new google.maps.Marker({ // 現在地にマーカーを立てる
+        position: latlng,
+        map: map,
+      });
+      map.addListener('click', function(e) {
+        getClickLatLng(e.latLng, map);
+      });
+      function getClickLatLng(lat_lng, map) {
+        Latitude.value = lat_lng.lat();
+        Longitude.value = lat_lng.lng();
+        var event = document.createEvent('MouseEvents');
+        marker.setMap(null);
+        marker = new google.maps.Marker({
+          position: lat_lng,
+          map: map
+        });
+        map.panTo(lat_lng);
+        event.initEvent('change', false, true);
+        fishingDate.dispatchEvent(event);
+      }
+  }
+</script>

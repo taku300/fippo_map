@@ -1,0 +1,85 @@
+<% set_meta_tags title: t('.title') %>
+
+<div id="maps" class="w-full h-[calc(100vh_-_64px_-_64px)] relative" ></div>
+<%= render 'shared/loading' %>
+<div class="absolute top-20 left-2">
+  <%= render 'search_form', url: fishes_path %></div>
+<% if logged_in? %>
+  <div class="absolute bottom-20 left-1/2 -translate-x-1/2 ">
+    <%= render 'post_buttons' %></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full">
+    <%= render 'center_pin' %></div>
+<% end %>
+<div class="absolute bottom-48 right-0">
+  <%= render 'current_position'%></div>
+
+<script>
+  var lat = 35.6812405                // 緯度
+  var lng = 139.7649361               // 経度
+  var currentLatlng                   // 現在地の緯度, 経度
+  var latlng;                         // 中心の緯度, 経度
+  var map;                            // 表示用のマップ
+  var current_marker;                 // 現在の位置情報
+  var marker = [];                    // 釣果用のマーカー
+  var infoWindow = [];                // 釣果用吹き出し
+
+  function initMap() {
+    // 現在位置を取得できた時
+    function success(pos) {
+      lat = pos.coords.latitude;
+      lng = pos.coords.longitude;
+      currentLatlng = new google.maps.LatLng(lat, lng);
+      <% if session['latitude'] && session['longitude'] %>
+        lat = <%= session['latitude'] %>;
+        lng = <%= session['longitude'] %>;
+      <% end %>
+      latlng = new google.maps.LatLng(lat, lng);
+      map = new google.maps.Map(document.getElementById('maps'), {
+        zoom: 8,
+        center: latlng,
+        mapTypeId: 'terrain',
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+      });
+      current_marker = new google.maps.Marker({ // 現在地にマーカーを立てる
+        position: currentLatlng,
+        map: map,
+      });
+      marker();
+    }
+    // 現在位置を取得できなかった時
+    function fail(error) {
+      <% if session['latitude'] && session['longitude'] %>
+        lat = <%= session['latitude'] %>;
+        lng = <%= session['longitude'] %>;
+      <% end %>
+      latlng = new google.maps.LatLng(lat, lng); //東京駅
+      map = new google.maps.Map(document.getElementById('maps'), {
+        zoom: 8,
+        center: latlng,
+        mapTypeId: 'terrain',
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+      });
+      marker();
+    }
+    // 釣果用のマーカーを立てる
+    function marker() {
+      <%= render partial: "fish", collection: @fishes %>
+    }
+    navigator.geolocation.getCurrentPosition(success, fail);
+  }
+  // 現在地に移動する
+  function changeCenter() {
+    map.panTo(currentLatlng);
+  }
+  // マップの中心の位置方法を取得して投稿画面に遷移
+  function toFormPost(){
+  var latlng = map.getCenter();
+  console.log(latlng.lat());
+  console.log(latlng.lng());
+  location.href = "fishes/new" + "?latitude=" + latlng.lat() + "&longitude=" + latlng.lng()
+  }
+</script>

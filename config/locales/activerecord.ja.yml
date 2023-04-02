@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+      fish: '釣果'
+    attributes:
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
+        avatar: 'サムネイル'
+        introduction: '自己紹介'
+        is_published: '公開'
+      fish:
+        image: '画像'
+        fishing_date: '日付'
+        body: 'コメント'
+        latitude: '緯度'
+        longitude: '経度'
+        species: '魚種'
+        size: 'サイズ'
+        weather: '天気'
+        wind_direction: '風向'
+        wind_speed: '風速'
+        temperature: '気温'
+        tide_name: '潮名'

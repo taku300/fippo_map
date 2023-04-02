@@ -1,0 +1,10 @@
+<% if current_user.like?(fish) %>
+  <%= button_to like_path(current_user.likes.find_by(fish_id: fish.id)), method: :delete do %>
+    <%= heroicon 'heart', options: { class: "w-4 mr-1", fill: "#ff3399" } %>
+  <% end %>
+<% else %>
+  <%= button_to likes_path(fish_id: fish.id), method: :post do %>
+    <%= heroicon 'heart', options: { class: "w-4 mr-1 bg-primary-500", fill: '#ffffff', stroke: '#ff3399', 'stroke-width': '2' } %>
+  <% end %>
+<% end %>
+<p class="text-[13px] flex-grow"><%= fish.likes.count %></p>
