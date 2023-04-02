@@ -67,14 +67,14 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  host = 'fippo-map.com'
+  host = 'fippo-map.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings         = {
       address:              'smtp.sendgrid.net',
       user_name:            'apikey',
       password:             ENV['SENDGRID_API_KEY'],
       authentication:       :plain,
-      domain:               'herokuapp.com',
+      domain:               'fippo-map.herokuapp.com',
       port:                 '587',
       enable_starttls_auto: true,
   }
