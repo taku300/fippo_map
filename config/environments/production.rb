@@ -72,7 +72,7 @@ Rails.application.configure do
       user_name:            'apikey',
       password:             ENV['SENDGRID_API_KEY'],
       authentication:       :plain,
-      domain:               'fippo-map.herokuapp.com',
+      domain:               'herokuapp.com',
       port:                 '587',
       enable_starttls_auto: true,
   }
