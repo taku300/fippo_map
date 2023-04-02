@@ -1,6 +1,6 @@
 ja:
   defaults:
-    fippo_map: 'fippo map'
+    fippo_map: 'FippoMap (フィッポマップ)'
     map: 'マップ'
     login: 'ログイン'
     register: '登録'
@@ -21,6 +21,7 @@ ja:
     terms_of_service: '利用規約'
     privacy_policy: 'プライバシーポリシー'
     copywriting: '© 2023 Fippo map'
+    wind: '風'
     message:
       require_login: 'ログインしてください'
       created: "%{item}を作成しました"
@@ -30,12 +31,13 @@ ja:
       deleted: "%{item}を削除しました。"
       delete_confirm: '削除しますか？'
       not_authorized: '権限がありません'
-
   users:
     new:
       title: 'ユーザー登録'
     edit:
       title: 'ユーザー更新'
+    show:
+      title: 'ユーザ詳細'
   user_sessions:
     new:
       title: 'ログイン'
@@ -61,28 +63,29 @@ ja:
       success: 'パスワードを変更しました'
       fail: 'パスワードの変更に失敗しました'
   fishes:
-    detail:
-      wind: '風'
+    index:
+      title: 'マップ'
     new:
-      title: '釣果を投稿'
+      title: '釣果投稿'
       more_info: 'もっと詳しく '
     show:
+      title: '釣果詳細'
     edit:
-      title: '釣果を更新'
+      title: '釣果更新'
     complete:
       title: '投稿完了しました！！'
+      title_ogp: '投稿完了'
       to_map: 'マップに戻る'
       to_twitter: 'Twitterに投稿'
-      text: 'フィッポマップで釣果を投稿しました！！'
-      hashtags: 'フィッポマップ,フィッポ,fippomap,fippo,魚釣り,釣果'
+      text: 'FippoMap (フィッポマップ)で釣果を投稿しました！！'
+      hashtags: 'FippoMap,fippo,フィッポマップ,フィッポ,魚釣り,釣果'
     complete_edit:
       title: '更新完了しました！！'
     form:
       more_info: 'もっと詳しく '
-    detail:
-      wind: '風'
   mypage:
     dashboard:
+      title: 'ダッシュボード'
     published:
       published?: '投稿を公開しますか？'
       not_published?: '投稿を非公開にしますか？'
