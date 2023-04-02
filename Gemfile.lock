@@ -215,6 +215,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     minitest (5.18.0)
     msgpack (1.6.1)
     multi_xml (0.6.0)
@@ -228,6 +229,9 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
+    nokogiri (1.14.2)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.2-x86_64-linux)
@@ -372,6 +376,8 @@ GEM
     ssrf_filter (1.1.1)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.24)
+      railties (>= 6.0.0)
     tailwindcss-rails (2.0.24-arm64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.24-x86_64-linux)
@@ -406,6 +412,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  ruby
   x86_64-linux
 
 DEPENDENCIES
