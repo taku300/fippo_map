@@ -385,6 +385,8 @@ GEM
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.24-x86_64-linux)
       railties (>= 6.0.0)
+    terser (1.1.14)
+      execjs (>= 0.3.0, < 3)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -394,8 +396,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (2.4.2)
     version_gem (1.1.1)
     web-console (4.2.0)
@@ -460,9 +460,9 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
+  terser
   turbo-rails
   tzinfo-data
-  uglifier
   web-console
   webdrivers
 
