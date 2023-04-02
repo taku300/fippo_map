@@ -69,8 +69,6 @@ gem 'httpclient'
 gem "pundit"
 gem 'ransack'
 gem 'meta-tags'
-gem "sass-rails"
-gem 'terser'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
