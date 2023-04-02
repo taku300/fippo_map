@@ -65,26 +65,18 @@ Rails.application.configure do
   # メイラーのテンプレートでフラグメントキャッシュを有効にするべきかどうかを指定します。
   # 指定のない場合のデフォルト値はtrueです。
   config.action_mailer.perform_caching = false
-  # deliverメソッドを実行したときに、true なら、メール配信を行なう。
-  config.action_mailer.perform_deliveries = true
-  # メール配信に失敗した場合にエラーを発生するかどうかを指定します。
-  # このオプションは、外部のメールサーバーが即時配信を行っている場合にのみ機能します。
-  config.action_mailer.raise_delivery_errors = true
-  # SMTP プロトコルによるメール配信を行う。
   config.action_mailer.delivery_method = :smtp
-  # アプリケーションのホスト情報をメイラー内で使いたい場合は:hostパラメータを明示的に指定します。
-  # これにより、メーラー内で、= link_to 'ようこそ', welcome_url などのように記述可能となる。
-  config.action_mailer.default_url_options = { host: 'www.fippo-map.com' }
-  # smtpの配信メソッドの詳細設定を行います。
-  # SENDGRID用
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.sendgrid.net',
-      port: 587,
-      domain: 'heroku.com',
-      user_name: ENV['SENDGRID_USERNAME'],
-      password: ENV['SENDGRID_API_KEY'],
-      authentication: :plain,
-      enable_starttls_auto: true
+  config.action_mailer.perform_deliveries = true
+  host = 'www.fippo-map.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings         = {
+      address:              'smtp.sendgrid.net',
+      user_name:            'apikey',
+      password:             ENV['SENDGRID_API_KEY'],
+      authentication:       :plain,
+      domain:               'herokuapp.com',
+      port:                 '587',
+      enable_starttls_auto: true,
   }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
