@@ -68,7 +68,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
     password: ENV['SENDGRID_PASSWORD'],
-    domain: "heroku.com",
+    domain: "www.fippo-map.com",
     address: "smtp.SendGrid.net",
     port: 587,
     authentication: :plain,
