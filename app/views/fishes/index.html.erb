@@ -19,7 +19,7 @@
   var currentLatlng                   // 現在地の緯度, 経度
   var latlng;                         // 中心の緯度, 経度
   var map;                            // 表示用のマップ
-  var current_marker;                 // 現在の位置情報
+  // var current_marker;                 // 現在の位置情報
   var marker = [];                    // 釣果用のマーカー
   var infoWindow = [];                // 釣果用吹き出し
 
@@ -42,10 +42,10 @@
         streetViewControl: false,
         fullscreenControl: false,
       });
-      current_marker = new google.maps.Marker({ // 現在地にマーカーを立てる
-        position: currentLatlng,
-        map: map,
-      });
+      // current_marker = new google.maps.Marker({ // 現在地にマーカーを立てる
+      //   position: currentLatlng,
+      //   map: map,
+      // });
       marker();
     }
     // 現在位置を取得できなかった時
