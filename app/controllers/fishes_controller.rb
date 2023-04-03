@@ -9,12 +9,11 @@ class FishesController < ApplicationController
 
     @q = Fish.ransack(params[:q])
     @fishes = @q.result(distinct: true).includes(:species, :user)
-    if (current_user)
+    if current_user
       @fishes = @fishes.published.or(@fishes.where(user_id: current_user.id))
     else
       @fishes = @fishes.published
     end
-
   end
 
   def show
