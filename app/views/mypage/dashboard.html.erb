@@ -15,6 +15,7 @@
         <div class="flex-grow min-h-[50px]"><%= simple_format(current_user.introduction)%></div>
         <div class="flex">
           <%= link_to t('defaults.edit'), edit_user_path(current_user), class: "inline-flex items-center rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0", data: {turbo: false} %>
+          <%= button_to t('defaults.delete'), user_path(current_user), method: :delete, class: "inline-flex items-center rounded-full bg-white px-3 py-1 text-xs sm:text-sm font-semibold text-black shadow-sm hover:bg-red-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-60 mr-1 mb-1 sm:mb-0 border-2 border-red-600", data: {turbo: false}, onclick: 'return confirm("ユーザーを消去しますか？\n投稿を含むすべての情報が削除され復活できなくなります。")' %>
           <%= render 'published' %>
         </div>
       </div>
