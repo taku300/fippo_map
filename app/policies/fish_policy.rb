@@ -8,7 +8,7 @@ class FishPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user == record.user || record.user.is_published
   end
 
   def create?

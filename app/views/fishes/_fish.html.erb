@@ -3,8 +3,8 @@ marker[<%= fish.id %>] = new markerWithLabel.MarkerWithLabel({
   position: markerLatLng,
   map: map,
   icon: {
-    url: "<%= fish.latest? ? 'images/fish_new1.png' : 'images/fish1.png' %>",
-    scaledSize: new google.maps.Size(32, 40)
+    url: "<%= fish.latest? ? image_url('fish_new1.png') : image_url('fish1.png') %>",
+    scaledSize: new google.maps.Size(30, 30)
   },
   labelContent: '<%= fish.species.name %>',
   labelClass: "marker-labels",
@@ -15,6 +15,10 @@ infoWindow[<%= fish.id %>] = new google.maps.InfoWindow({
   content: `
           <table class="table-auto mt-3">
           <tbody>
+            <tr>
+              <td class="w-14"><%= User.human_attribute_name(:name) %></td>
+              <td><%= fish.user.name %></td>
+            </tr>
             <tr>
               <td class="w-14"><%= Fish.human_attribute_name(:fishing_date) %></td>
               <td><%= fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></td>

@@ -14,8 +14,8 @@ module ApplicationHelper
       canonical: request.original_url, # 優先するurlを指定する
       noindex: !Rails.env.production?,
       icon: [ # favicon、apple用アイコンを指定する
-        # { href: image_url('favicon.ico') },
-        # { href: image_url('icon.jpg'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
+        # { href: image_url('favicon.png') },
+        { href: image_url('icon.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' },
       ],
       og: {
         site_name: 'FippoMap (フィッポマップ)',
@@ -23,7 +23,7 @@ module ApplicationHelper
         description: '文字だけの情報ではどこで魚が釣れるか分かりづらい、釣った魚の情報を簡単に記録できるツールがないといった悩みを持った人に、 視覚的に投稿、閲覧、管理できる価値を与える、マップに特化した釣り人のためのSNSです!!',
         type: 'website',
         url: request.original_url,
-        # image: image_url('ogp.png'),
+        image: image_url('ogp.png'),
         locale: 'ja_JP'
       },
       twitter: {
