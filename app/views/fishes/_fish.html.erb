@@ -16,6 +16,10 @@ infoWindow[<%= fish.id %>] = new google.maps.InfoWindow({
           <table class="table-auto mt-3">
           <tbody>
             <tr>
+              <td class="w-14"><%= User.human_attribute_name(:name) %></td>
+              <td><%= fish.user.name %></td>
+            </tr>
+            <tr>
               <td class="w-14"><%= Fish.human_attribute_name(:fishing_date) %></td>
               <td><%= fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></td>
             </tr>

@@ -7,8 +7,14 @@ class FishesController < ApplicationController
   def index
     authorize(Fish)
 
-    @q = Fish.joins(:user).where(user: { is_published: true }).ransack(params[:q])
-    @fishes = @q.result(distinct: true).includes(:species)
+    @q = Fish.ransack(params[:q])
+    @fishes = @q.result(distinct: true).includes(:species, :user)
+    if (current_user)
+      @fishes = @fishes.published.or(@fishes.where(user_id: current_user.id))
+    else
+      @fishes = @fishes.published
+    end
+
   end
 
   def show
