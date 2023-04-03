@@ -25,6 +25,8 @@ class Fish < ApplicationRecord
   validates :temperature, presence: true, numericality: true
   validates :tide_name, presence: true
 
+  scope :published, -> { where(user: { is_published: true }) }
+
   def latest?
     Date.parse(fishing_date.to_s) == Time.zone.today
   end
