@@ -65,9 +65,13 @@
         streetViewControl: false,
         fullscreenControl: false,
       });
-      marker = new google.maps.Marker({
-        position: latlng,
-        map: map,
-      });
+      marker = new markerWithLabel.MarkerWithLabel({
+          position: latlng,
+          map: map,
+          icon: {
+            url: "<%= image_url('fish1.png') %>",
+            scaledSize: new google.maps.Size(30, 30)
+          },
+        });
   }
 </script>
