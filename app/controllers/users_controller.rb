@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update destroy]
 
   def show
     authorize(@user)
@@ -38,6 +38,11 @@ class UsersController < ApplicationController
       flash.now[:alert] = t('defaults.message.not_updated', item: User.model_name.human)
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @user.destroy!
+    redirect_to login_path, notice: t('defaults.message.deleted', item: User.model_name.human)
   end
 
   def add_published
