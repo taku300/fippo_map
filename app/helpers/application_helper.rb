@@ -19,7 +19,7 @@ module ApplicationHelper
       ],
       og: {
         site_name: 'FippoMap (フィッポマップ)',
-        # title: 'タイトル',
+        title: 'FippoMap (フィッポマップ) - 釣った魚の情報を簡単に記録できるマップに特化した釣り人のためのSNSです。',
         description: '文字だけの情報ではどこで魚が釣れるか分かりづらい、釣った魚の情報を簡単に記録できるツールがないといった悩みを持った人に、 視覚的に投稿、閲覧、管理できる価値を与える、マップに特化した釣り人のためのSNSです!!',
         type: 'website',
         url: request.original_url,
