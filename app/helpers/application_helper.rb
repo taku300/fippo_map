@@ -1,6 +1,6 @@
 module ApplicationHelper
   def map_if(controller, action)
-    current_page?(controller:, action:) ? 'flex flex-col' : 'px-5'
+    current_page?(controller:, action:) ? '' : 'px-5'
   end
 
   def default_meta_tags
