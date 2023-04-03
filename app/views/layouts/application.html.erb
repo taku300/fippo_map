@@ -15,7 +15,7 @@
   <body class="flex flex-col min-h-screen">
     <%= render 'shared/header' %>
     <%= render 'shared/flash' %>
-    <main class="<%= map_if('fishes', 'index') %> flex-grow bg-[#E9F0FE] relative">
+    <main class="<%= map_if('fishes', 'index') %> bg-[#E9F0FE] relative min-h-[calc(100dvh_-_64px_-_64px)]">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
