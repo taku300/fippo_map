@@ -54,7 +54,4 @@ function markerEvent(i) {
   marker[i].addListener('mouseout', function(){
     infoWindow[i].close(map, marker[i]);
   });
-  marker[i].addListener('touchstart', function(){
-    infoWindow[i].close(map, marker[i]);
-  });
 }
