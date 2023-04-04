@@ -17,20 +17,18 @@ SitemapGenerator::Sitemap.create do
   #
   # Add '/articles'
   #
-  add root_path, :priority => 0.9, :changefreq => 'daily'
-  add login_path, :priority => 0.5, :changefreq => 'daily'
-  add new_user_path, :priority => 0.5, :changefreq => 'daily'
+  add root_path, priority: 0.9, changefreq: 'daily'
+  add login_path, priority: 0.5, changefreq: 'daily'
+  add new_user_path, priority: 0.5, changefreq: 'daily'
   User.find_each do |user|
-    add edit_user_path(user), :lastmod => user.updated_at
+    add edit_user_path(user), lastmod: user.updated_at
   end
-  add fishes_path, :priority => 1.0, :changefreq => 'daily'
-  add complete_fishes_path, :priority => 0.6, :changefreq => 'daily'
-  add complete_edit_fishes_path, :priority => 0.6, :changefreq => 'daily'
+  add fishes_path, priority: 1.0, changefreq: 'daily'
+  add complete_fishes_path, priority: 0.6, changefreq: 'daily'
+  add complete_edit_fishes_path, priority: 0.6, changefreq: 'daily'
   Fish.find_each do |fish|
-    add edit_fish_path(fish), :lastmod => fish.updated_at
-    add fish_path(fish), :lastmod => fish.updated_at
+    add edit_fish_path(fish), lastmod: fish.updated_at
+    add fish_path(fish), lastmod: fish.updated_at
   end
-  add new_fish_path, :priority => 0.8, :changefreq => 'daily'
-
-
+  add new_fish_path, priority: 0.8, changefreq: 'daily'
 end
