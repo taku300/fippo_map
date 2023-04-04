@@ -1,11 +1,11 @@
 module ApplicationHelper
   def map_if
-    if current_page?(controller: 'fishes', action:'index')
+    if current_page?(controller: 'fishes', action: 'index')
       'flex flex-col'
     elsif current_page?(controller: 'static_pages', action: 'top')
       ''
     else
-     'px-5'
+      'px-5'
     end
   end
 
