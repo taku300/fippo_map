@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_follows, source: :follow
   mount_uploader :avatar, AvatarUploader
 
+  before_create -> { self.uuid = 'fippo-' + SecureRandom.hex(10) }
+
   validates :name, presence: true, length: { maximum: 255 }
   validates :email, uniqueness: true, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:crypted_password] }
