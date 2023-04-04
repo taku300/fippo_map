@@ -8,7 +8,7 @@
   <%= f.text_field :species, list: 'fish_species_id', class: 'block w-full rounded-md border-0 py-2 px-3.5 mt-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', value: fish.species_default, required: "required" %>
   <p class="block text-gray-700 text-xs italic mt-1 mb-10"><%= t('simple_form.hints.user.species') %></p>
   <datalist id="fish_species_id">
-  <% Species.pluck(:name).each do |species| %>
+  <% Species.order("id").pluck(:name).each do |species| %>
     <option value="<%= species %>"></option>
   <% end %>
   </datalist>
