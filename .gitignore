@@ -20,6 +20,7 @@ doc/
 .secret
 
 /public/uploads
+public/sitemap.xml.gz
 
 config/settings.local.yml
 config/settings/*.local.yml
