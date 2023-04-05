@@ -18,7 +18,9 @@
     </tr>
     <tr class="h-8">
       <td><%= t('.grade') %></td>
-      <td></td>
+      <td><%= current_user.grade %></td>
+      <%= image_tag 'fish' + current_user.grade.to_s + '.png', size: '30x30', class: 'absolute bottom-6 sm:right-4 sm:block hidden'%>
+      <%= image_tag 'fish' + current_user.grade.to_s + '.png', size: '30x30', class: 'absolute bottom-6 sm:hidden left-36 '%>
     </tr>
   </tbody>
 </table>

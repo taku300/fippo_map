@@ -46,6 +46,7 @@ class FishesController < ApplicationController
       @fish = current_user.fishes.new(fish_params)
       @fish.species_id = species.id
       @fish.save!
+      current_user.update!(grade: current_user.grade_calc)
       session[:latitude] = params[:fish][:latitude]
       session[:longitude] = params[:fish][:longitude]
       session[:fish_id] = @fish.id
@@ -81,8 +82,11 @@ class FishesController < ApplicationController
   def destroy
     authorize(@fish)
 
-    @fish.destroy!
-    redirect_to fishes_path, notice: t('defaults.message.deleted', item: Fish.model_name.human)
+    Fish.transaction do
+      @fish.destroy!
+      current_user.update!(grade: current_user.grade_calc)
+      redirect_to fishes_path, notice: t('defaults.message.deleted', item: Fish.model_name.human)
+    end
   end
 
   def complete
