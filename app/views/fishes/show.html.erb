@@ -7,7 +7,7 @@
   <div class="mx-auto max-w-xl">
     <div class="flex">
       <%= link_to user_path(@user), class: "flex max-w-xs items-center rounded-ful text-sm focus:outline-none", data: { turbo: false } do %>
-      <%= image_tag @user.avatar_url(:thumbnail), class: "rounded-full h-12 w-12 sm:h-16 sm:w-16", alt: User.human_attribute_name(:avatar) %>
+        <%= image_tag @user.avatar_url(:thumbnail), class: "rounded-full h-12 w-12 sm:h-16 sm:w-16", alt: User.human_attribute_name(:avatar) %>
       <% end %>
       <div class="flex-grow px-5 text-base sm:text-xl">
         <%= @user.name %>
@@ -41,7 +41,11 @@
     <div class="my-3"><%= simple_format(@fish.body)%></div>
     <hr>
     <%= render 'detail', { fish: @fish } %>
-    <div id="maps" class="w-full h-[calc((100vh_-_64px_-_64px)_*_0.5)] relative rounded-xl" ></div>
+    <div id="maps" class="w-full h-[calc((100vh_-_64px_-_64px)_*_0.5)] relative rounded-xl mb-10" ></div>
+    <%= turbo_frame_tag "comment-list" do %>
+      <%= render 'comments/comments', { comments: @comments } %>
+      <%= render 'comments/form', { fish: @fish, comment: @comment } %>
+    <% end %>
   </div>
 </div>
 
