@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_020418) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_063156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "body", null: false
+    t.bigint "user_id"
+    t.bigint "fish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fish_id"], name: "index_comments_on_fish_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "fishes", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -76,10 +86,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_020418) do
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
     t.string "uuid"
+    t.integer "grade", limit: 2, default: 1, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "comments", "fishes"
+  add_foreign_key "comments", "users"
   add_foreign_key "follows", "users", column: "follow_id"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "likes", "fishes"
