@@ -51,4 +51,25 @@ class User < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["access_count_to_reset_password_page", "avatar", "created_at", "crypted_password", "email", "id", "introduction", "is_published", "name", "reset_password_email_sent_at", "reset_password_token", "reset_password_token_expires_at", "salt", "updated_at"]
   end
+
+  def grade_calc
+    level1 = 1
+    level2 = 3
+    level3 = 8
+    level4 = 15
+    level5 = 30
+    num = fishes.count
+    case num
+    when level1..(level2 - 1)
+      1
+    when level2..(level3 - 1)
+      2
+    when level3..(level4 - 1)
+      3
+    when level4..(level5 - 1)
+      4
+    else
+      5
+    end
+  end
 end
