@@ -95,6 +95,7 @@ ja:
       to_twitter: 'Twitterに投稿'
       text: 'FippoMap (フィッポマップ)で釣果を投稿しました！！'
       hashtags: 'FippoMap,fippo,フィッポマップ,フィッポ,魚釣り,釣果'
+      grade: 'グレード'
     complete_edit:
       title: '更新完了しました！！'
     form:

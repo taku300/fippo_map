@@ -1,4 +1,6 @@
 <div class="mx-auto mt-6 max-w-xl sm:mt-12">
+  <%= image_tag 'fish' + current_user.grade.to_s + '.png', size: '50x50', class: 'm-auto'%>
+  <p class='text-center mb-10'><%= t('.grade') + current_user.grade.to_s %></p>
   <div class="flex justify-center">
     <%= link_to t('.to_twitter'), "https://twitter.com/share?ref_src=twsrc%5Etfw", class: 'twitter-share-button flex', data: {
                   lang: "ja",
