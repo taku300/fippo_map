@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :reverse_of_follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy, inverse_of: 'follower'
   has_many :followings, through: :follows, source: :follower
   has_many :followers, through: :reverse_of_follows, source: :follow
+  has_many :comments, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   before_create -> { self.uuid = 'fippo-' + SecureRandom.hex(10) }
