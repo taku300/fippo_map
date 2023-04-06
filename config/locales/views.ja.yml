@@ -55,6 +55,15 @@ ja:
       title: 'ユーザー更新'
     show:
       title: 'ユーザ詳細'
+    published:
+      published?: '投稿を公開しますか？'
+      not_published?: '投稿を非公開にしますか？'
+    status:
+      status: 'STATUS'
+      post_num: '投稿数'
+      follow_num: 'フォロー中'
+      follower_num: 'フォロワー'
+      grade: 'グレード'
   user_sessions:
     new:
       title: 'ログイン'
@@ -104,12 +113,3 @@ ja:
   mypage:
     dashboard:
       title: 'ダッシュボード'
-    published:
-      published?: '投稿を公開しますか？'
-      not_published?: '投稿を非公開にしますか？'
-    status:
-      status: 'STATUS'
-      post_num: '投稿数'
-      follow_num: 'フォロー中'
-      follower_num: 'フォロワー'
-      grade: 'グレード'

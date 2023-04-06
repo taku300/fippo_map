@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user == record || record.is_published
   end
 
   def create?
