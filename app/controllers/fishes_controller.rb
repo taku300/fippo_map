@@ -20,6 +20,8 @@ class FishesController < ApplicationController
     authorize(@fish)
 
     @user = @fish.user
+    @comment = Comment.new
+    @comments = @fish.comments.includes(:user).order(created_at: :asc)
   end
 
   def new

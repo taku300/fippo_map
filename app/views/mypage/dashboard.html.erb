@@ -4,23 +4,12 @@
   <div class="mx-auto">
     <div class="sm:flex">
       <div class="flex-grow flex flex-col sm:border-r-[1px] sm:border-spacing-100">
-        <div class="flex mb-4">
-          <%= link_to mypage_dashboard_path, class: "flex max-w-xs items-center rounded-ful text-sm focus:outline-none", data: { turbo: false } do %>
-          <%= image_tag current_user.avatar_url(:thumbnail), class: "rounded-full h-12 w-12 sm:h-16 sm:w-16", alt: User.human_attribute_name(:avatar) %>
-          <% end %>
-          <div class="flex-grow px-5 text-base sm:text-xl">
-            <%= current_user.name %>
-          </div>
-        </div>
-        <div class="flex-grow min-h-[50px]"><%= simple_format(current_user.introduction)%></div>
-        <div class="flex">
-          <%= link_to t('defaults.edit'), edit_user_path(current_user), class: "inline-flex items-center rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0", data: {turbo: false} %>
-          <%= button_to t('defaults.delete'), user_path(current_user), method: :delete, class: "inline-flex items-center rounded-full bg-white px-3 py-1 text-xs sm:text-sm font-semibold text-black shadow-sm hover:bg-red-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-60 mr-1 mb-1 sm:mb-0 border-2 border-red-600", data: {turbo: false}, onclick: 'return confirm("ユーザーを消去しますか？\n投稿を含むすべての情報が削除され復活できなくなります。")' %>
-          <%= render 'published' %>
-        </div>
+        <%= render 'users/user_info', { user: current_user } %>
+        <div class="flex-grow min-h-[50px] break-all pr-6 pb-6 "><%= simple_format(current_user.introduction)%></div>
+        <%= render 'users/buttons'%>
       </div>
       <hr class="my-3">
-      <%= render 'status' %>
+      <%= render 'users/status', { user: current_user} %>
     </div>
   </div>
 </div>

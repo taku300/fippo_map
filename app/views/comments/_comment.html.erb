@@ -1,0 +1,23 @@
+<%= turbo_frame_tag comment do %>
+  <div class='flex gap-4 relative mb-6'>
+    <%= link_to comment.user, class: current_user && current_user.own?(comment) ? 'order-2 rounded-ful' : 'rounded-ful', data: { turbo: false } do %>
+      <%= image_tag comment.user.avatar_url(:thumbnail), class: "rounded-full w-10", alt: User.human_attribute_name(:avatar) %>
+    <% end %>
+    <div class="w-full min-h-[64px] rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-30 sm:text-sm break-all bg-white  <%= current_user && current_user.own?(comment) ? 'order-1 sm:ml-24' : 'sm:mr-24' %>" >
+      <%= simple_format(comment.body) %>
+    </div>
+    <% if current_user && current_user.own?(comment) %>
+      <div class='flex items-end gap-1 absolute top-9 right-0'>
+        <%= button_to edit_comment_path(comment), method: :get do %>
+          <%= heroicon 'pencil',
+              options: { class: "w-4", fill: "#ff3399" } %>
+        <% end %>
+        <%= button_to comment,
+              method: :delete,
+              form: { data: { turbo_confirm: t('defaults.message.really?') } } do %>
+          <%= heroicon 'trash', options: { class: "w-4", fill: "#ff3399" } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

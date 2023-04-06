@@ -9,7 +9,7 @@
     <%= f.search_field :body_cont, class: 'inline-flex items-center rounded-full border-2 border-indigo-600 bg-white px-3 py-1 mr-1 mb-1 w-32 text-xs font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 text-gray-500', placeholder: t('defaults.search_word') %>
     <%= f.search_field :species_name_cont, list: 'fish_species_id', class: 'inline-flex items-center rounded-full border-2 border-indigo-600 bg-white px-3 py-1 mr-1 mb-1 w-32 text-xs font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 text-gray-500', placeholder: Fish.human_attribute_name(:species) %>
     <datalist id="fish_species_id">
-      <% Species.order("id").pluck(:name).each do |species| %>
+      <% Species.pluck(:name).each do |species| %>
       <option value="<%= species %>"></option>
       <% end %>
     </datalist>

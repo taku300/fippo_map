@@ -3,6 +3,7 @@ ja:
     models:
       user: 'ユーザー'
       fish: '釣果'
+      comment: 'コメント'
     attributes:
       user:
         name: '名前'
@@ -25,3 +26,5 @@ ja:
         wind_speed: '風速'
         temperature: '気温'
         tide_name: '潮名'
+      comment:
+        body: '本文'

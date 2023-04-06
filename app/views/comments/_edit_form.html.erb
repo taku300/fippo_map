@@ -1,0 +1,8 @@
+<%= turbo_frame_tag comment do %>
+  <div class='relative'>
+    <%= render 'comments/form', { fish: @fish, comment: comment } %>
+    <%= link_to request.referer, class: 'absolute bottom-8 right-0' do %>
+      <%= heroicon 'archive-box-x-mark', options: { class: "w-6 mr-1", fill: "#ff3399" } %>
+    <% end %>
+  </div>
+<% end %>
