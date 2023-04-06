@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, only: %i[show new create]
   before_action :set_user, only: %i[show edit update destroy]
 
   def show
     authorize(@user)
+
+    @fishes = @user.fishes.includes(:species).order(created_at: :asc).page(params[:page])
   end
 
   def new

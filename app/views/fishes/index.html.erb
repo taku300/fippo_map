@@ -67,7 +67,7 @@
     }
     // 釣果用のマーカーを立てる
     function marker() {
-      <%= render partial: "fish", collection: @fishes %>
+      <%= render partial: "map_fish", collection: @fishes, as: 'fish' %>
     }
     navigator.geolocation.getCurrentPosition(success, fail);
   }

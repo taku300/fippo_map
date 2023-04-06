@@ -1,0 +1,26 @@
+<table class="table-auto text-sm text-slate-500 sm:mx-9 min-w-[100px]">
+  <tbody>
+    <tr class="h-10">
+      <td class="w-24"><%= 'STATUS' %></td>
+      <td><%=  %></td>
+    </tr>
+    <tr class="h-8">
+      <td><%= t('.post_num') %></td>
+      <td><%= user.fishes.count  %></td>
+    </tr>
+    <tr class="h-8">
+      <td><%= t('.follow_num') %></td>
+      <td><%= user.followings.count %></td>
+    </tr>
+    <tr class="h-8">
+      <td><%= t('.follower_num') %></td>
+      <td><%= user.followers.count %></td>
+    </tr>
+    <tr class="h-8">
+      <td><%= t('.grade') %></td>
+      <td><%= user.grade %></td>
+      <%= image_tag 'fish' + user.grade.to_s + '.png', size: '30x30', class: 'absolute bottom-6 sm:right-4 sm:block hidden'%>
+      <%= image_tag 'fish' + user.grade.to_s + '.png', size: '30x30', class: 'absolute bottom-6 sm:hidden left-36 '%>
+    </tr>
+  </tbody>
+</table>
