@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     authorize(@user)
 
-    @fishes = @user.fishes.includes(:species).order(created_at: :asc).page(params[:page])
+    @fishes = @user.fishes.includes(:species).order(fishing_date: :desc).page(params[:page])
   end
 
   def new
