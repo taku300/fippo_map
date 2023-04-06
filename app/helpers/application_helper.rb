@@ -21,7 +21,7 @@ module ApplicationHelper
       noindex: !Rails.env.production?,
       icon: [ # favicon、apple用アイコンを指定する
         { href: image_url('favicon.png') },
-        { href: image_url('icon.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' }
+        { href: image_url('apple_icon.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/jpg' }
       ],
       og: {
         site_name: 'FippoMap (フィッポマップ)',
