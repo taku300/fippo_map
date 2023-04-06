@@ -1,0 +1,12 @@
+<div class="flex mb-4">
+  <%= link_to fish, class: "flex max-w-xs items-center rounded-ful text-sm focus:outline-none shrink-0", data: { turbo: false } do %>
+    <%= image_tag fish.image_url(:thumbnail), class: "rounded-full h-8 w-8 sm:h-12 sm:w-12 ", alt: Fish.human_attribute_name(:image) %>
+  <% end %>
+  <div class="flex-grow px-5 text-base whitespace-nowrap overflow-x-scroll">
+    <%= fish.fishing_date.strftime("%Y年%m月%d日") %><br>
+    <%= fish.species.name %>
+  </div>
+  <% if logged_in? %>
+    <%= render 'fishes/like', { fish: fish } %>
+  <% end %>
+</div>

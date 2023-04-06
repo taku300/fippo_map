@@ -1,0 +1,61 @@
+markerLatLng = new google.maps.LatLng({lat: <%= fish.latitude.to_s %>, lng: <%= fish.longitude.to_s %> });
+marker[<%= fish.id %>] = new markerWithLabel.MarkerWithLabel({
+  position: markerLatLng,
+  map: map,
+  icon: {
+    url: "<%= fish.latest? ? image_url('fish_new' + fish.user.grade.to_s + '.png') : image_url('fish' + fish.user.grade.to_s + '.png') %>",
+    scaledSize: new google.maps.Size(30, 30)
+  },
+  labelContent: '<%= fish.species.name %>',
+  labelClass: "marker-labels",
+});
+// 吹き出しの追加
+infoWindow[<%= fish.id %>] = new google.maps.InfoWindow({
+  position: markerLatLng,
+  content: `
+          <table class="table-auto mt-3">
+          <tbody>
+            <tr>
+              <td class="w-14"><%= User.human_attribute_name(:name) %></td>
+              <td><%= fish.user.name %></td>
+            </tr>
+            <tr>
+              <td class="w-14"><%= Fish.human_attribute_name(:fishing_date) %></td>
+              <td><%= fish.fishing_date.strftime("%Y年%m月%d日") %></td>
+            </tr>
+            <tr>
+              <td><%= Fish.human_attribute_name(:size) %></td>
+              <td><%= fish.size %></td>
+            </tr>
+            <tr>
+              <td><%= Fish.human_attribute_name(:weather) %></td>
+              <td><%= fish.weather_i18n %>　<%= fish.temperature%>℃</td>
+            </tr>
+            <tr>
+              <td><%= t('defaults.wind') %></td>
+              <td><%= fish.wind_direction_i18n %>　<%= fish.wind_speed %>m/s</td>
+            </tr>
+            <tr>
+              <td><%= Fish.human_attribute_name(:tide_name) %></td>
+              <td><%= fish.tide_name_i18n %></td>
+            </tr>
+          </tbody>
+        </table>
+  `,
+  pixelOffset: new google.maps.Size(0, -50)
+});
+
+markerEvent(<%= fish.id %>); // マーカーにクリックイベントを追加
+
+// マーカーをホバーした時に吹き出しを表示
+function markerEvent(i) {
+  marker[i].addListener('click', function() { // マーカーをクリックしたとき
+    location.href = "/fishes/" + i
+  });
+  marker[i].addListener('mouseover', function() { // マーカーをクリックしたとき
+    infoWindow[i].open(map, marker[i]); // 吹き出しの表示
+  });
+  marker[i].addListener('mouseout', function(){
+    infoWindow[i].close(map, marker[i]);
+  });
+}
