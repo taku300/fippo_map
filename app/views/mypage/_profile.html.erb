@@ -1,0 +1,13 @@
+<div class="bg-form py-6 px-6 max-w-[800px] m-auto mb-16 rounded-2xl relative">
+  <div class="mx-auto">
+    <div class="sm:flex">
+      <div class="flex-grow flex flex-col sm:border-r-[1px] sm:border-spacing-100">
+        <%= render 'users/user_info_lg', { user: current_user } %>
+        <div class="flex-grow min-h-[50px] break-all pr-6 pb-6 "><%= simple_format(current_user.introduction)%></div>
+        <%= render 'users/buttons'%>
+      </div>
+      <hr class="my-3">
+      <%= render 'users/status', { user: current_user} %>
+    </div>
+  </div>
+</div>
