@@ -33,6 +33,7 @@ ja:
       delete_confirm: '削除しますか？'
       not_authorized: '権限がありません'
       really?: '本当に消去しますか？'
+      unfollow?: '%{item}さんのフォローを解除しますか？'
   static_pages:
     top:
       label1-1: '魚が釣れる場所が知りたい'
@@ -55,6 +56,7 @@ ja:
       title: 'ユーザー更新'
     show:
       title: 'ユーザ詳細'
+      not_published: 'このユーザーの投稿は非公開です'
     published:
       published?: '投稿を公開しますか？'
       not_published?: '投稿を非公開にしますか？'
@@ -101,7 +103,8 @@ ja:
     complete:
       title: '投稿完了しました！！'
       title_ogp: '投稿完了'
-      to_map: 'マップに戻る'
+      to_map: 'マップに移動'
+      to_fish_details: '詳細画面に移動'
       to_twitter: 'Twitterに投稿'
       text: 'FippoMap (フィッポマップ)で釣果を投稿しました！！'
       hashtags: 'FippoMap,fippo,フィッポマップ,フィッポ,魚釣り,釣果'
@@ -113,3 +116,7 @@ ja:
   mypage:
     dashboard:
       title: 'ダッシュボード'
+    follows:
+      title: 'フォロー'
+    followers:
+      title: 'フォロワー'

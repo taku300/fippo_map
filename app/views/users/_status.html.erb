@@ -2,7 +2,11 @@
   <tbody>
     <tr class="h-10">
       <td class="w-24"><%= 'STATUS' %></td>
-      <td><%=  %></td>
+      <% if user.is_published %>
+        <td><%= heroicon 'check-circle', options: { fill: '#000000', class: 'w-4'} %></td>
+      <% else %>
+        <td><%= heroicon 'key', options: { fill: '#000000', class: 'w-4'} %></td>
+      <% end %>
     </tr>
     <tr class="h-8">
       <td><%= t('.post_num') %></td>

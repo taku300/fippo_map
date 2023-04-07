@@ -2,12 +2,12 @@
 
 <div class="bg-form py-16 px-6 sm:py-24 lg:px-8 max-w-[800px] m-auto my-16 rounded-2xl relative">
   <div class='absolute top-3 left-3 '>
-    <%= render 'shared/back' %>
+    <%= render 'shared/to_map' %>
   </div>
   <div class="mx-auto max-w-xl">
     <div class="flex">
       <div class="flex-grow">
-        <%= render 'users/user_info', { user: @fish.user } %>
+        <%= render 'users/user_info_lg', { user: @fish.user } %>
       </div>
       <% if logged_in? %>
         <div class="flex flex-col justify-between shrink-0">
@@ -17,7 +17,7 @@
                 <%= button_to t('defaults.delete'), fish_path(@fish), method: :delete, class: "inline-flex items-center rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1", onclick: "return confirm('" + t('defaults.message.delete_confirm') + "')", data: {turbo: false} %>
             </div>
           <% else %>
-            <%= render 'users/follow', {user: @user} %>
+            <%= render 'users/follow_turbo', {user: @user} %>
           <% end %>
         </div>
       <% end %>
@@ -25,14 +25,12 @@
     <div class="flex justify-center">
       <div>
         <%= image_tag @fish.image.url, class: 'rounded-lg mt-10', id: 'preview', size: '200x200' %>
-        <%= turbo_frame_tag "like" do %>
-          <div class="flex justify-between items-start mb-10">
-            <% if logged_in? %>
-              <%= render 'like', { fish: @fish } %>
-            <% end %>
-            <p class="text-[13px] text-slate-500"><%= @fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></p>
-          </div>
-        <% end %>
+        <div class="flex justify-between items-start mb-10">
+          <% if logged_in? %>
+            <%= render 'like', { fish: @fish } %>
+          <% end %>
+          <p class="text-[13px] text-slate-500"><%= @fish.fishing_date.strftime("%Y-%m-%d %H:%M:%S") %></p>
+        </div>
       </div>
     </div>
     <div class="my-3"><%= simple_format(@fish.body)%></div>
@@ -72,7 +70,7 @@
           position: latlng,
           map: map,
           icon: {
-            url: "<%= image_url('fish1.png') %>",
+            url: "<%= image_url('fish' + @fish.user.grade.to_s + '.png') %>",
             scaledSize: new google.maps.Size(30, 30)
           },
         });

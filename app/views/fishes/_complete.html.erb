@@ -12,6 +12,10 @@
                   }
     %>
   </div>
-  <%= link_to t('.to_map'), fishes_path, class: 'block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-5', 'data-turbo': false %>
+  <div class="flex gap-2">
+    <%= link_to t('.to_map'), fishes_path, class: 'block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-5', 'data-turbo': false %>
+    <%= link_to t('.to_fish_details'), @fish, class: 'block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-5', 'data-turbo': false %>
+  </div>
 </div>
+
 <script src="https://platform.twitter.com/widgets.js" charset="utf-8" defer></script>
