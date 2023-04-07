@@ -5,10 +5,10 @@
     <div class="sm:flex">
       <div class="flex-grow flex flex-col sm:border-r-[1px] sm:border-spacing-100">
         <div class="flex justify-between mr-2">
-          <%= render 'user_info', { user: @user } %>
+          <%= render 'user_info_lg', { user: @user } %>
           <% if logged_in? %>
             <% if current_user.id != @user.id %>
-              <%= render 'users/follow', {user: @user} %>
+              <%= render 'users/follow_turbo', {user: @user} %>
             <% end %>
           <% end %>
         </div>
@@ -20,9 +20,10 @@
   </div>
 </div>
 
-<div class="max-w-[800px] m-auto mb-16">
-  <%= turbo_frame_tag "fishes-list" do %>
-    <%= render 'fishes/fishes', { fishes: @fishes }%>
-    <%= paginate @fishes, class: 'mt-3'%>
-  <% end %>
+<% if @user.is_published%>
+  <%= render 'fishes/fishes', { fishes: @fishes }%>
+<% else %>
+<div class="flex justify-center">
+  <div class="rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white"><%= t('.not_published') %></div>
 </div>
+<% end %>

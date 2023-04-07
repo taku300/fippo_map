@@ -1,0 +1,11 @@
+<div class="bg-form p-6 rounded-2xl relative">
+  <div class="flex flex-col">
+    <div class="flex justify-between mr-2">
+      <%= render 'users/user_info', { user: user } %>
+      <% if logged_in? %>
+        <%= render 'users/follow', {user: user} %>
+      <% end %>
+    </div>
+    <div class="flex-grow h-[75px] break-all pr-6 pb-6 overflow-y-scroll"><%= simple_format(user.introduction)%></div>
+  </div>
+</div>

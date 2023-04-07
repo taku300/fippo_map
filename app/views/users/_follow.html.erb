@@ -1,7 +1,5 @@
-<%= turbo_frame_tag "follow" do %>
-  <% if current_user.following?(user)%>
-    <%= button_to t('defaults.followed'), user_follows_path(user.id), method: :delete, class: "inline-flex items-center rounded-full bg-indigo-600 px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0" %>
-  <% else %>
-    <%= button_to t('defaults.follow'), user_follows_path(user.id), method: :post, class: "inline-flex items-center rounded-full border-2 border-indigo-500  bg-white px-3 py-1 text-xs sm:text-sm font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0" %>
-  <% end %>
+<% if current_user.following?(user)%>
+  <%= button_to t('defaults.followed'), user_follows_path(user.id), method: :delete, class: "inline-flex items-center rounded-full bg-indigo-600 px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0", form: { data: { turbo_confirm: t('defaults.message.unfollow?', item: user.name) } } %>
+<% else %>
+  <%= button_to t('defaults.follow'), user_follows_path(user.id), method: :post, class: "inline-flex items-center rounded-full border-2 border-indigo-500  bg-white px-3 py-1 text-xs sm:text-sm font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0" %>
 <% end %>
