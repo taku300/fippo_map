@@ -9,7 +9,9 @@ class CommentsController < ApplicationController
     authorize(Comment)
 
     @comment = current_user.comments.build(comment_params)
+    @fish = @comment.fish
     @comment.save
+    @fish.create_notification_comment!(current_user, @comment.id)
     redirect_to request.referer
   end
 

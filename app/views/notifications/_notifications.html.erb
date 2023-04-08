@@ -1,0 +1,6 @@
+  <%= turbo_frame_tag "notifications-list" do %>
+    <div class="bg-form rounded-xl">
+      <%= render notifications %>
+    </div>
+    <%= paginate @notifications, class: 'mt-3'%>
+  <% end %>

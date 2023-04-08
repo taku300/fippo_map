@@ -3,7 +3,7 @@
     <%= image_tag fish.image_url(:thumbnail), class: "rounded-full h-8 w-8 sm:h-12 sm:w-12", alt: Fish.human_attribute_name(:image) %>
   <% end %>
   <div class="flex-grow px-5 text-base whitespace-nowrap overflow-x-scroll">
-    <%= fish.fishing_date.strftime("%Y年%m月%d日") %><br>
+    <p class="text-xs text-slate-500"><%= fish.fishing_date.strftime("%Y年%m月%d日") %></p>
     <%= fish.species.name %>
   </div>
   <% if logged_in? %>

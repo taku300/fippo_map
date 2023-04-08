@@ -1,0 +1,32 @@
+<% set_meta_tags title: t('.title') %>
+
+<%= render 'nav' %>
+
+<div class="max-w-[800px] m-auto my-16">
+  <div class="sm:flex gap-4">
+    <div class="bg-form rounded-2xl w-1/2 h-[300px] overflow-y-scroll sm:order-1 mb-4">
+      <h2 class="text-lg my-4 p-2 text-center">FippoMapからお知らせ</h2>
+      <div class="min-h-10 border-t-[1px] border-t-black/5 text-sm p-2 ">
+        <p class="text-xs text-slate-500">2023年04月08日</p>
+        <p class="">あなたをフォロー、あなたの投稿にいいね・コメントをした時に通知が来るようになりました！！</p>
+        <p class="text-right text-slate-500 text-xs mt-1"><%= time_ago_in_words('2023-04-08').upcase %></p>
+      </div>
+      <div class="min-h-10 border-t-[1px] border-t-black/5 text-sm p-2 ">
+        <p class="text-xs text-slate-500">2023年04月06日</p>
+        <p class="">マイページでフォロー・フォロワーが見れるようになりました！！</p>
+        <p class="text-right text-slate-500 text-xs mt-1"><%= time_ago_in_words('2023-04-06').upcase %></p>
+      </div>
+      <div class="min-h-10 border-t-[1px] border-t-black/5 text-sm p-2 ">
+        <p class="text-xs text-slate-500">2023年04月05日</p>
+        <p class="">投稿にコメントができるようになりました！！</p>
+        <p class="text-right text-slate-500 text-xs mt-1"><%= time_ago_in_words('2023-04-05').upcase %></p>
+      </div>
+      <div class="min-h-10 border-t-[1px] border-t-black/5 text-sm p-2 ">
+        <p class="text-xs text-slate-500">2023年04月04日</p>
+        <p class="">FippoMapをMVPリリースしました！！</p>
+        <p class="text-right text-slate-500 text-xs mt-1"><%= time_ago_in_words('2023-04-04').upcase %></p>
+      </div>
+    </div>
+    <%= render 'notifications/notifications', {notifications: @notifications} %>
+  </div>
+</div>
