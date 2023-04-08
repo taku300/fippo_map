@@ -2,6 +2,7 @@ ja:
   defaults:
     fippo_map: 'FippoMap (フィッポマップ)'
     map: 'マップ'
+    list: '釣果一覧'
     login: 'ログイン'
     register: '登録'
     logout: 'ログアウト'
@@ -96,6 +97,8 @@ ja:
   fishes:
     index:
       title: '釣りマップ'
+    index:
+      title: '釣果一覧'
     new:
       title: '釣果投稿'
       more_info: 'もっと詳しく '
