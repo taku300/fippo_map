@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
   if Rails.env.development?
     get '/login_as/:user_id', to: 'user_sessions#login_as', as: :login_as
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
@@ -8,6 +7,9 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
+  post "oauth/callback", to: "oauths#callback"
+  get "oauth/callback", to: "oauths#callback"
+  get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
   delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
   resources :users, only: %i[new create show edit update destroy] do
@@ -28,8 +30,5 @@ Rails.application.routes.draw do
     get 'follows'
     get 'followers'
     get 'notifications'
-  end
-  namespace :admin do
-    resource :news, only: %i[index new edit create update]
   end
 end

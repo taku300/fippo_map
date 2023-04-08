@@ -1,8 +1,10 @@
 <%= simple_form_for user, builder: SimpleForm::Tailwind::FormBuilder, data: { turbo: false } do |f| %>
   <%= f.input :name %>
   <%= f.input :email %>
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
+  <% if current_page?(controller: 'users', action: 'new') %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+  <% end %>
   <%= f.input :avatar, as: :file, onchange: 'previewImage()' %>
   <%= f.hidden_field :avatar_cache %>
   <%= image_tag user.avatar.url, class: 'mb-10 rounded-lg', id: 'preview', size: '100x100' %>

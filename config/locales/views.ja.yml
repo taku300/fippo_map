@@ -34,6 +34,8 @@ ja:
       not_authorized: '権限がありません'
       really?: '本当に消去しますか？'
       unfollow?: '%{item}さんのフォローを解除しますか？'
+      login: "%{item}でログインしました"
+      not_login: "%{item}でのログインに失敗しました"
   static_pages:
     top:
       label1-1: '魚が釣れる場所が知りたい'
@@ -74,6 +76,7 @@ ja:
       password: 'パスワード'
       sign_up: '新規登録'
       forgotten_password: 'パスワードを忘れた方'
+      login_google: 'Googleでログイン'
     create:
       login: 'ログインしました'
       not_login: 'ログインできませんでした'
