@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   if Rails.env.development?
     get '/login_as/:user_id', to: 'user_sessions#login_as', as: :login_as
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
@@ -26,5 +27,9 @@ Rails.application.routes.draw do
     get 'dashboard'
     get 'follows'
     get 'followers'
+    get 'notifications'
+  end
+  namespace :admin do
+    resource :news, only: %i[index new edit create update]
   end
 end

@@ -1,10 +1,13 @@
 <div class="mb-6">
   <%= simple_form_for [fish, comment], html: { data: { turbo_frame: "comment-list" } } do |f|%>
-  <div class='flex items-end gap-2'>
-    <%= f.text_area :body, class: 'block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', row: '4', placeholder: Comment.human_attribute_name(:body) %>
-    <%= button_to  class: 'btn btn-primary' do %>
-      <%= heroicon 'paper-airplane', options: { class: "w-6 mr-1", fill: "#ff3399" } %>
+    <div class='flex items-end gap-2'>
+      <%= f.text_area :body, class: 'block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', row: '4', placeholder: Comment.human_attribute_name(:body) %>
+      <%= button_to  class: 'btn btn-primary' do %>
+        <%= heroicon 'paper-airplane', options: { class: "w-6 mr-1", fill: "#ff3399" } %>
+      <% end %>
+    </div>
+    <% comment.errors.full_messages.each do |message| %>
+      <p class="mt-2 text-red-500 text-xs"><%= message %></p>
     <% end %>
-  </div>
   <% end %>
 </div>
