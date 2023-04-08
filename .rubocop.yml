@@ -152,3 +152,18 @@ Naming/RescuedExceptionsVariableName:
 
 Lint/UnusedMethodArgument:
   Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/RedundantForeignKey:
+  Enabled: false
