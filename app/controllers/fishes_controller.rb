@@ -1,7 +1,7 @@
 class FishesController < ApplicationController
   include FishHelper
   skip_before_action :verify_authenticity_token
-  skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_login, only: %i[index list show]
   before_action :set_fish, only: %i[show edit update destroy]
 
   def index
@@ -9,7 +9,18 @@ class FishesController < ApplicationController
 
     @q = Fish.ransack(params[:q])
     @fishes = @q.result(distinct: true).includes(:species, :user)
-    if current_user
+    if logged_in?
+      @fishes = @fishes.published.or(@fishes.where(user_id: current_user.id))
+    else
+      @fishes = @fishes.published
+    end
+  end
+
+  def list
+    authorize(Fish)
+
+    @fishes = Fish.includes(:species, :user).page(params[:page]).per(20)
+    if logged_in?
       @fishes = @fishes.published.or(@fishes.where(user_id: current_user.id))
     else
       @fishes = @fishes.published
