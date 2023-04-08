@@ -22,13 +22,21 @@ SitemapGenerator::Sitemap.create do
   add new_user_path, priority: 0.5, changefreq: 'daily'
   User.find_each do |user|
     add edit_user_path(user), lastmod: user.updated_at
+    add user_path(user), lastmod: user.updated_at
   end
   add fishes_path, priority: 1.0, changefreq: 'daily'
   add complete_fishes_path, priority: 0.6, changefreq: 'daily'
   add complete_edit_fishes_path, priority: 0.6, changefreq: 'daily'
+  add new_fish_path, priority: 0.8, changefreq: 'daily'
   Fish.find_each do |fish|
     add edit_fish_path(fish), lastmod: fish.updated_at
     add fish_path(fish), lastmod: fish.updated_at
   end
+  add complete_fishes_path, priority: 0.6, changefreq: 'daily'
+  add complete_edit_fishes_path, priority: 0.6, changefreq: 'daily'
   add new_fish_path, priority: 0.8, changefreq: 'daily'
+  add mypage_dashboard_path, priority: 0.7, changefreq: 'daily'
+  add mypage_follows_path, priority: 0.7, changefreq: 'daily'
+  add mypage_followers_path, priority: 0.7, changefreq: 'daily'
+  add mypage_notifications_path, priority: 0.7, changefreq: 'daily'
 end
