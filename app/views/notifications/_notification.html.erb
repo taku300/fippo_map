@@ -1,0 +1,35 @@
+<div class="min-h-10 border-t-black/5 text-sm p-2 border-t-[1px]">
+  <span>
+    <%= link_to user_path(notification.visitor), class: 'font-black rounded-full', data: { turbo: false } do %>
+      <%= image_tag notification.visitor.avatar_url(:thumbnail), class: "w-4 h-4 inline rounded-full"%>
+      <%= notification.visitor.name %>
+    <% end %>
+  </span>
+  <span>さんが</span>
+  <% case notification.action %>
+  <% when 'follow' then %>
+    <span>あなたをフォローしました</span>
+  <% when 'like' then %>
+    <span>
+      <%= link_to 'あなたの投稿', notification.fish, class: 'font-black', data: { turbo: false } %>
+    </span>
+    <span>にいいねしました</span>
+  <% when 'comment' then %>
+    <% if notification.fish.user_id == notification.visited.id %>
+      <%= link_to notification.fish, class: 'font-black', data: { turbo: false } do %>
+        <span>あなたの投稿</span>
+      <% end %>
+    <% else %>
+        <span>
+          <%= link_to fish_path(notification.fish), class: 'font-black', data: { turbo: false } do %>
+            <%= image_tag notification.fish.user.avatar_url(:thumbnail), class: "w-4 h-4 inline rounded-full" %>
+            <%= notification.fish.user.name %>
+          <% end %>
+        </span>
+        <span >さんの投稿</span>
+    <% end %>
+    <span>にコメントしました</span>
+    <p class="text-slate-500 mt-1"><%= Comment.find_by(id: notification.comment_id)&.body %></p>
+  <% end %>
+  <p class="text-right text-slate-500 text-xs mt-1"><%= time_ago_in_words(notification.created_at).upcase %></p>
+</div>
