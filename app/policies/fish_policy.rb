@@ -3,6 +3,10 @@ class FishPolicy < ApplicationPolicy
     true
   end
 
+  def list?
+    true
+  end
+
   def new?
     true
   end

@@ -25,6 +25,7 @@ SitemapGenerator::Sitemap.create do
     add user_path(user), lastmod: user.updated_at
   end
   add fishes_path, priority: 1.0, changefreq: 'daily'
+  add list_fishes_path, priority: 0.9, changefreq: 'daily'
   add complete_fishes_path, priority: 0.6, changefreq: 'daily'
   add complete_edit_fishes_path, priority: 0.6, changefreq: 'daily'
   add new_fish_path, priority: 0.8, changefreq: 'daily'
