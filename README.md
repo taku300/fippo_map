@@ -1,5 +1,7 @@
 # [釣りマップ](https://www.fippo-map.com/login)
 
+<img width="461" alt="image" src="https://user-images.githubusercontent.com/81466754/230786080-c164536a-3180-43b1-87d5-ef5211cd5dc0.png">
+
 ## サービス概要
 **文字だけの情報ではどこで魚が釣れるか分かりづらい**、**釣った魚の情報を簡単に記録できるツールがない**といった悩みを持った人に、
 **視覚的**に投稿、閲覧、管理できる価値を与える、
