@@ -1,20 +1,38 @@
 class FishesController < ApplicationController
   include FishHelper
   skip_before_action :verify_authenticity_token
-  skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_login, only: %i[index list show]
   before_action :set_fish, only: %i[show edit update destroy]
 
   def index
     authorize(Fish)
 
-    @q = Fish.joins(:user).where(user: { is_published: true }).ransack(params[:q])
-    @fishes = @q.result(distinct: true).includes(:species)
+    @q = Fish.ransack(params[:q])
+    @fishes = @q.result(distinct: true).includes(:species, :user)
+    if logged_in?
+      @fishes = @fishes.published.or(@fishes.where(user_id: current_user.id))
+    else
+      @fishes = @fishes.published
+    end
+  end
+
+  def list
+    authorize(Fish)
+
+    @fishes = Fish.includes(:species, :user).page(params[:page]).per(20)
+    if logged_in?
+      @fishes = @fishes.published.or(@fishes.where(user_id: current_user.id))
+    else
+      @fishes = @fishes.published
+    end
   end
 
   def show
     authorize(@fish)
 
     @user = @fish.user
+    @comment = Comment.new
+    @comments = @fish.comments.includes(:user).order(created_at: :asc)
   end
 
   def new
@@ -33,14 +51,11 @@ class FishesController < ApplicationController
     authorize(Fish)
 
     Fish.transaction do
-      if Species.exists?(name: species_params[:species])
-        species = Species.find_by(name: species_params[:species])
-      else
-        species = Species.create!(name: species_params[:species])
-      end
+      species = create_or_find_species
       @fish = current_user.fishes.new(fish_params)
       @fish.species_id = species.id
       @fish.save!
+      current_user.update!(grade: current_user.grade_calc)
       session[:latitude] = params[:fish][:latitude]
       session[:longitude] = params[:fish][:longitude]
       session[:fish_id] = @fish.id
@@ -55,11 +70,7 @@ class FishesController < ApplicationController
     authorize(@fish)
 
     Fish.transaction do
-      if Species.exists?(name: species_params[:species])
-        species = Species.find_by(name: species_params[:species])
-      else
-        species = Species.create!(name: species_params[:species])
-      end
+      species = create_or_find_species
       @fish.assign_attributes(fish_params)
       @fish.species_id = species.id
       @fish.save!
@@ -76,8 +87,11 @@ class FishesController < ApplicationController
   def destroy
     authorize(@fish)
 
-    @fish.destroy!
-    redirect_to fishes_path, notice: t('defaults.message.deleted', item: Fish.model_name.human)
+    Fish.transaction do
+      @fish.destroy!
+      current_user.update!(grade: current_user.grade_calc)
+      redirect_to fishes_path, notice: t('defaults.message.deleted', item: Fish.model_name.human)
+    end
   end
 
   def complete
@@ -108,6 +122,16 @@ class FishesController < ApplicationController
     response = weather_history_request(date, latitude, longitude)
     respond_to do |format|
       format.json { render json: input_history_default(date.to_time, latitude, longitude, response) }
+    end
+  end
+
+  private
+
+  def create_or_find_species
+    if Species.exists?(name: species_params[:species])
+      Species.find_by(name: species_params[:species])
+    else
+      Species.create!(name: species_params[:species])
     end
   end
 

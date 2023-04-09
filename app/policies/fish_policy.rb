@@ -3,12 +3,16 @@ class FishPolicy < ApplicationPolicy
     true
   end
 
+  def list?
+    true
+  end
+
   def new?
     true
   end
 
   def show?
-    true
+    user == record.user || record.user.is_published
   end
 
   def create?

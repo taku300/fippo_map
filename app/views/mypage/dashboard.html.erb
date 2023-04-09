@@ -1,25 +1,7 @@
 <% set_meta_tags title: t('.title') %>
 
-<div class="bg-form py-6 px-6 max-w-[800px] m-auto my-16 rounded-2xl relative">
-  <div class="mx-auto">
-    <div class="sm:flex">
-      <div class="flex-grow flex flex-col sm:border-r-[1px] sm:border-spacing-100">
-        <div class="flex mb-4">
-          <%= link_to mypage_dashboard_path, class: "flex max-w-xs items-center rounded-ful text-sm focus:outline-none", data: { turbo: false } do %>
-          <%= image_tag current_user.avatar_url(:thumbnail), class: "rounded-full h-12 w-12 sm:h-16 sm:w-16", alt: User.human_attribute_name(:avatar) %>
-          <% end %>
-          <div class="flex-grow px-5 text-base sm:text-xl">
-            <%= current_user.name %>
-          </div>
-        </div>
-        <div class="flex-grow min-h-[50px]"><%= simple_format(current_user.introduction)%></div>
-        <div class="flex">
-          <%= link_to t('defaults.edit'), edit_user_path(current_user), class: "inline-flex items-center rounded-full bg-black px-3 py-1 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60 mr-1 mb-1 sm:mb-0", data: {turbo: false} %>
-          <%= render 'published' %>
-        </div>
-      </div>
-      <hr class="my-3">
-      <%= render 'status' %>
-    </div>
-  </div>
-</div>
+<%= render 'nav' %>
+
+<%= render 'profile' %>
+
+<%= render 'fishes/fishes', { fishes: @fishes }%>

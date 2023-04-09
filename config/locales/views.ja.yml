@@ -2,6 +2,7 @@ ja:
   defaults:
     fippo_map: 'FippoMap (フィッポマップ)'
     map: 'マップ'
+    list: '釣果一覧'
     login: 'ログイン'
     register: '登録'
     logout: 'ログアウト'
@@ -20,6 +21,7 @@ ja:
     unspecified: '指定なし'
     terms_of_service: '利用規約'
     privacy_policy: 'プライバシーポリシー'
+    inquire: 'お問い合わせ'
     copywriting: '© 2023 Fippo map'
     wind: '風'
     message:
@@ -31,6 +33,25 @@ ja:
       deleted: "%{item}を削除しました。"
       delete_confirm: '削除しますか？'
       not_authorized: '権限がありません'
+      really?: '本当に消去しますか？'
+      unfollow?: '%{item}さんのフォローを解除しますか？'
+      login: "%{item}でログインしました"
+      not_login: "%{item}でのログインに失敗しました"
+  static_pages:
+    top:
+      label1-1: '魚が釣れる場所が知りたい'
+      label1-2: 'FippoMapはその願いを叶えます'
+      text1-1: '釣った魚の情報を簡単に記録できる'
+      text1-2: 'マップに特化した釣り人のためのSNSです!!'
+      label2-1: '釣果を投稿しよう！！'
+      label2-2: 'FippoMapで自分だけの釣りマップを作ろう！！'
+      text2-1: '視覚的な操作で、決めた位置に簡単に釣果情報を投稿できます。'
+      text2-2: '気象情報は自動で反映されます。'
+      text2-3: '釣れた魚の情報をマップ上で管理して分析できます。'
+      text2-4: '非公開にすればポイントを知られたくない人も使用できます。'
+      label3-1: '視覚的・直感的な操作で釣果情報を簡単に入手できます'
+      label3-2: 'あなたはもう魚に逃げられる心配はありません'
+      start_now: '↓↓　今すぐ始めよう！!　↓↓'
   users:
     new:
       title: 'ユーザー登録'
@@ -38,6 +59,16 @@ ja:
       title: 'ユーザー更新'
     show:
       title: 'ユーザ詳細'
+      not_published: 'このユーザーの投稿は非公開です'
+    published:
+      published?: '投稿を公開しますか？'
+      not_published?: '投稿を非公開にしますか？'
+    status:
+      status: 'STATUS'
+      post_num: '投稿数'
+      follow_num: 'フォロー中'
+      follower_num: 'フォロワー'
+      grade: 'グレード'
   user_sessions:
     new:
       title: 'ログイン'
@@ -46,6 +77,7 @@ ja:
       password: 'パスワード'
       sign_up: '新規登録'
       forgotten_password: 'パスワードを忘れた方'
+      login_google: 'Googleでログイン'
     create:
       login: 'ログインしました'
       not_login: 'ログインできませんでした'
@@ -64,7 +96,9 @@ ja:
       fail: 'パスワードの変更に失敗しました'
   fishes:
     index:
-      title: 'マップ'
+      title: '釣りマップ'
+    index:
+      title: '釣果一覧'
     new:
       title: '釣果投稿'
       more_info: 'もっと詳しく '
@@ -75,10 +109,12 @@ ja:
     complete:
       title: '投稿完了しました！！'
       title_ogp: '投稿完了'
-      to_map: 'マップに戻る'
+      to_map: 'マップに移動'
+      to_fish_details: '詳細画面に移動'
       to_twitter: 'Twitterに投稿'
       text: 'FippoMap (フィッポマップ)で釣果を投稿しました！！'
       hashtags: 'FippoMap,fippo,フィッポマップ,フィッポ,魚釣り,釣果'
+      grade: 'グレード'
     complete_edit:
       title: '更新完了しました！！'
     form:
@@ -86,12 +122,9 @@ ja:
   mypage:
     dashboard:
       title: 'ダッシュボード'
-    published:
-      published?: '投稿を公開しますか？'
-      not_published?: '投稿を非公開にしますか？'
-    status:
-      status: 'STATUS'
-      post_num: '投稿数'
-      follow_num: 'フォロー中'
-      follower_num: 'フォロワー'
-      grade: 'グレード'
+    follows:
+      title: 'フォロー'
+    followers:
+      title: 'フォロワー'
+    notifications:
+      title: 'お知らせ'

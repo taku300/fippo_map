@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
   has_many :fishes, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_fishes, through: :likes, source: :fish
@@ -8,7 +10,12 @@ class User < ApplicationRecord
   has_many :reverse_of_follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy, inverse_of: 'follower'
   has_many :followings, through: :follows, source: :follower
   has_many :followers, through: :reverse_of_follows, source: :follow
+  has_many :comments, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   mount_uploader :avatar, AvatarUploader
+
+  before_create -> { self.uuid = 'fippo-' + SecureRandom.hex(10) }
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :email, uniqueness: true, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
@@ -48,5 +55,37 @@ class User < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     ["access_count_to_reset_password_page", "avatar", "created_at", "crypted_password", "email", "id", "introduction", "is_published", "name", "reset_password_email_sent_at", "reset_password_token", "reset_password_token_expires_at", "salt", "updated_at"]
+  end
+
+  def grade_calc
+    level1 = 1
+    level2 = 3
+    level3 = 8
+    level4 = 15
+    level5 = 30
+    num = fishes.count
+    case num
+    when level1..(level2 - 1)
+      1
+    when level2..(level3 - 1)
+      2
+    when level3..(level4 - 1)
+      3
+    when level4..(level5 - 1)
+      4
+    else
+      5
+    end
+  end
+
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 end

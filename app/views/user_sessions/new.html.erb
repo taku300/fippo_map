@@ -5,6 +5,7 @@
     <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><%= t('.title') %></h2>
   </div>
   <div class="mx-auto mt-6 max-w-xl sm:mt-12">
+    <%= render 'google' %>
     <%= simple_form_for :user, url: :login, method: :post, builder: SimpleForm::Tailwind::FormBuilder, data: { turbo: false } do |f| %>
       <%= f.input :email %>
       <%= f.input :password %>
@@ -12,7 +13,7 @@
     <% end %>
   </div>
   <div class='flex justify-center mt-5 text-indigo-600'>
-    <%=link_to t('.sign_up'), new_user_path, class: 'mr-10', data: { turbo: false } %>
-    <%=link_to t('.forgotten_password'), new_password_reset_path, data: { turbo: false } %>
-  </div>
+    <%=link_to t('.sign_up'), new_user_path, class: '', data: { turbo: false } %>
 </div>
+
+<script src="https://accounts.google.com/gsi/client" defer></script>

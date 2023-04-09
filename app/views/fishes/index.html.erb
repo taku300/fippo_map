@@ -1,16 +1,16 @@
 <% set_meta_tags title: t('.title') %>
 
-<div id="maps" class="w-full h-[calc(100vh_-_64px_-_64px)] relative" ></div>
+<div id="maps" class="w-full flex-grow" ></div>
 <%= render 'shared/loading' %>
-<div class="absolute top-20 left-2">
+<div class="absolute top-2 left-2">
   <%= render 'search_form', url: fishes_path %></div>
 <% if logged_in? %>
-  <div class="absolute bottom-20 left-1/2 -translate-x-1/2 ">
+  <div class="absolute bottom-5 left-1/2 -translate-x-1/2 ">
     <%= render 'post_buttons' %></div>
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full">
     <%= render 'center_pin' %></div>
 <% end %>
-<div class="absolute bottom-48 right-0">
+<div class="absolute bottom-28 right-0">
   <%= render 'current_position'%></div>
 
 <script>
@@ -19,7 +19,7 @@
   var currentLatlng                   // 現在地の緯度, 経度
   var latlng;                         // 中心の緯度, 経度
   var map;                            // 表示用のマップ
-  var current_marker;                 // 現在の位置情報
+  // var current_marker;                 // 現在の位置情報
   var marker = [];                    // 釣果用のマーカー
   var infoWindow = [];                // 釣果用吹き出し
 
@@ -42,10 +42,10 @@
         streetViewControl: false,
         fullscreenControl: false,
       });
-      current_marker = new google.maps.Marker({ // 現在地にマーカーを立てる
-        position: currentLatlng,
-        map: map,
-      });
+      // current_marker = new google.maps.Marker({ // 現在地にマーカーを立てる
+      //   position: currentLatlng,
+      //   map: map,
+      // });
       marker();
     }
     // 現在位置を取得できなかった時
@@ -67,7 +67,7 @@
     }
     // 釣果用のマーカーを立てる
     function marker() {
-      <%= render partial: "fish", collection: @fishes %>
+      <%= render partial: "map_fish", collection: @fishes, as: 'fish' %>
     }
     navigator.geolocation.getCurrentPosition(success, fail);
   }

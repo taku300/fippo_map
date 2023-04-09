@@ -1,0 +1,8 @@
+<div class="flex items-start mb-4">
+  <%= link_to user, class: "flex max-w-xs items-center rounded-ful text-sm focus:outline-none shrink-0", data: { turbo: false } do %>
+  <%= image_tag user.avatar_url(:thumbnail), class: "rounded-full h-8 w-8 sm:h-12 sm:w-12", alt: User.human_attribute_name(:avatar) %>
+  <% end %>
+  <div class="flex-grow px-5 text-base whitespace-nowrap overflow-x-scroll">
+    <%= user.name %>
+  </div>
+</div>
