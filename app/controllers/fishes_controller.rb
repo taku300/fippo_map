@@ -51,11 +51,7 @@ class FishesController < ApplicationController
     authorize(Fish)
 
     Fish.transaction do
-      if Species.exists?(name: species_params[:species])
-        species = Species.find_by(name: species_params[:species])
-      else
-        species = Species.create!(name: species_params[:species])
-      end
+      species = create_or_find_species
       @fish = current_user.fishes.new(fish_params)
       @fish.species_id = species.id
       @fish.save!
@@ -74,11 +70,7 @@ class FishesController < ApplicationController
     authorize(@fish)
 
     Fish.transaction do
-      if Species.exists?(name: species_params[:species])
-        species = Species.find_by(name: species_params[:species])
-      else
-        species = Species.create!(name: species_params[:species])
-      end
+      species = create_or_find_species
       @fish.assign_attributes(fish_params)
       @fish.species_id = species.id
       @fish.save!
@@ -130,6 +122,16 @@ class FishesController < ApplicationController
     response = weather_history_request(date, latitude, longitude)
     respond_to do |format|
       format.json { render json: input_history_default(date.to_time, latitude, longitude, response) }
+    end
+  end
+
+  private
+
+  def create_or_find_species
+    if Species.exists?(name: species_params[:species])
+      Species.find_by(name: species_params[:species])
+    else
+      Species.create!(name: species_params[:species])
     end
   end
 
