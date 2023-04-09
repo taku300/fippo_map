@@ -87,6 +87,10 @@
 - Javascript
 - Jquery
 - TailwindCSS
+### API
+- Google Maps JavaScript API
+- OpenWeatherAPI
+- GoogleAPI OAuth
 ### データベース
 - PostgreSQL 15.2
 ### インフラ
