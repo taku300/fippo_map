@@ -30,3 +30,5 @@ node_modules/
 /.env
 /.env.development
 /.env.production
+
+app/assets/builds/
