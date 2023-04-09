@@ -1,6 +1,6 @@
 class MypageController < ApplicationController
   def dashboard
-    @fishes = current_user.fishes.includes(:species).order(fishing_date: :desc).page(params[:page])
+    @fishes = current_user.fishes.includes(:species).page(params[:page])
   end
 
   def follows

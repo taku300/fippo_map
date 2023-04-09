@@ -1,4 +1,5 @@
 class Fish < ApplicationRecord
+  default_scope -> { order(fishing_date: :desc) }
   belongs_to :user
   belongs_to :species
   has_many :likes, dependent: :destroy
